@@ -1,0 +1,35 @@
+[project]
+name = "developers-guide-to-genai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "jupyter>=1.1.1",
+    "nbclient>=0.10.2",
+    "nbformat>=5.10.4",
+    "pyyaml>=6.0.2",
+    "jupyter-client>=8.6.3",
+    "jupyter-core>=5.7.2",
+    "tornado>=6.4.2",
+    "ipython>=9.0.2",
+    "traitlets>=5.14.3",
+    "pyzmq>=26.3.0",
+    "comm>=0.1.1",
+    "ipywidgets>=8.1.5",
+    "python-dateutil>=2.9.0",
+    "matplotlib-inline>=0.1.7",
+    "debugpy>=1.8.13",
+    "nest-asyncio>=1.6.0",
+    "psutil>=7.0.0",
+    "pygments>=2.19.1",
+    "six>=1.17.0",
+    "platformdirs>=4.3.7",
+    "stack-data>=0.6.3",
+    "executing>=2.2.0",
+    "altair>=5.5.0",
+    "pandas>=2.2.3",
+    "plotly>=6.0.1",
+    "vl-convert-python>=1.7.0",
+]

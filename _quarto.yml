@@ -1,0 +1,15 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Context is King"
+  repo-url: "https://github.com/Baukebrenninkmeijer/pydata-2025-context-is-king"
+
+format:
+  revealjs:
+    slide-level: 2
+
+react:
+  components: _components
+  resources: _components
