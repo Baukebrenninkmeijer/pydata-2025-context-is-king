@@ -1,0 +1,62 @@
+---
+marp: true
+title: Context is King
+html: true
+format:
+  revealjs:
+    theme: [Sketchy.scss, styles.scss]
+    footer: "Context is King • Bauke Brenninkmeijer"
+    width: 1280
+    height: 720
+    toc: true
+    toc-depth: 1
+    show-slide-number: speaker
+    title-slide-attributes: 
+      data-background-color: transparent
+      class: hide-slide
+---
+
+```{=html}
+<div style="text-align: center;">
+  <img src="img/moire.svg" alt="Moire pattern" style="max-width: 80%; height: auto;">
+  <h1 style="margin-top: 2rem;">Context is King</h1>
+</div>
+```
+
+---
+
+## {visibility="hidden"}
+
+## Research question:
+- When must we switch from context window retrieval to RAG
+- Can we skip RAG and immediately work with full context window when sources fit in the context window? 
+- Is there a context window threshold where we observe a sharp dropoff in performance?
+- Does reranking still make sense in a post-RAG world? 
+- If small context is still needed, and reranking does not help, how can we best utilize the effective context window?
+- With growing context windows, how does the performance of RAG change when we start to include more retrieved chunks?
+- Do models with larger context windows outperform models with smaller context windows at the same context window size. For example, does a 1M token context window perform better than a 100k token context window at the 100k token context window size?
+- Chroma research indicates that shuffling data improves retrieval performance within the context window. If this is the case, should we start shuffling data for context-window retrieval?
+
+### Cost-performance trade-off
+- At what cost multiplier does RAG become preferable regardless of performance?
+- Does cost-performance trade-off change with context window size?
+
+### Latency implications
+- How does latency change with context window size?
+- What are the latency thresholds where RAG becomes necessary for user experience?
+
+## Hypothesis
+
+- Long context allows us to skip RAG for certain situations that easily fit into context window
+- There is some context windows threshold where we observe a sharp dropoff in performance.
+- Reranking does not hold value for long context windows.
+
+## Experiment setup
+We have results from context window retrieval. We will re-use the same datasets as chroma has done in their research, with common best practices. 
+
+## Notable points
+- Llama has a 10M model, but it's only served up to 128k. Together AI serves Scout up to 1M (10% of max), openrouter also 1M max.
+- Google reduced the max context size window from 2M back to 1M for Gemini 2.5. What does this tell us?
+
+
+---
