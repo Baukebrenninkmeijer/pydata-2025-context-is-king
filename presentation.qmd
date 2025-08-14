@@ -45,11 +45,25 @@ format:
 - How does latency change with context window size?
 - What are the latency thresholds where RAG becomes necessary for user experience?
 
+### Dynamic context management: (optional)
+- How should systems adaptively choose between RAG and long context based on query characteristics?
+- Can we develop hybrid approaches that use long context for certain queries, and RAG for others?
+
+### Hybrid Approach Optimization (out of scope)
+
+- What are the optimal hybrid strategies that combine RAG with selective long context usage?
+- How should we partition information between immediate context and retrieval corpus in hybrid systems?
+
+
+
 ## Hypothesis
 
-- Long context allows us to skip RAG for certain situations that easily fit into context window
-- There is some context windows threshold where we observe a sharp dropoff in performance.
-- Reranking does not hold value for long context windows.
+1.  Long context allows us to skip RAG for certain situations that easily fit into context window
+2. There is some context windows threshold where we observe a sharp dropoff in performance.
+3. Reranking does not hold value for long context windows, except when using reranker thresholds as filtering mechanism.
+4. Cost-adjusted performance favors RAG even when long context technically performs better, with the crossover point occurring at [X]% context window utilization.
+5. Hybrid approaches that strategically combine RAG with selective long context usage outperform pure strategies across most practical scenarios.
+6. The optimal context strategy is predictable from document corpus characteristics, enabling automated strategy selection.
 
 ## Experiment setup
 We have results from context window retrieval. We will re-use the same datasets as chroma has done in their research, with common best practices. 
@@ -57,6 +71,13 @@ We have results from context window retrieval. We will re-use the same datasets 
 ## Notable points
 - Llama has a 10M model, but it's only served up to 128k. Together AI serves Scout up to 1M (10% of max), openrouter also 1M max.
 - Google reduced the max context size window from 2M back to 1M for Gemini 2.5. What does this tell us?
+
+
+## Evaluation Metrics
+- Beyond accuracy, include:
+  - Cost per query (normalized across approaches)
+  - End-to-end latency
+  - Memory utilization
 
 
 ---
