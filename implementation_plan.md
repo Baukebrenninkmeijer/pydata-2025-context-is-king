@@ -28,10 +28,10 @@ TECH_STACK = {
     'tabular_data': 'excel + polars',           # .xlsx for manual editing, polars for operations
     'embeddings': 'all-MiniLM-L6-v2',          # Local SentenceTransformer model
     'llm_generation': 'moonshotai/kimi-k2-instruct',  # NVIDIA API
-    'llm_judge': 'moonshotai/kimi-k2-instruct',       # Same model for consistency
+    'llm_judge': 'gpt-4.1-2025-04-14',               # OpenAI API - exact same as Chroma
     'optimization': 'batching for all operations',     # Speed/efficiency
     'hardware': 'RTX 3080 (10GB) + MacBook (18GB)',
-    'budget': '$0 (free NVIDIA API)',
+    'budget': '$0 (free NVIDIA API) + OpenAI API costs for judge',
     'rate_limit': '40 requests/minute'
 }
 ```
@@ -151,7 +151,7 @@ class BatchedEmbeddingGenerator:
         pass
 ```
 
-**2. RateLimitedNvidiaClient**
+**2. API Clients**
 ```python
 class RateLimitedNvidiaClient:
     """NVIDIA API client with 40 requests/minute rate limiting"""
@@ -170,6 +170,15 @@ class RateLimitedNvidiaClient:
     def batch_requests(self, requests: List[dict], batch_size: int = 10) -> List[dict]:
         """Process multiple requests with rate limiting"""
         # IMPLEMENTATION NEEDED: Batch processing with progress tracking
+        pass
+
+class OpenAIJudgeClient:
+    """OpenAI API client for GPT-4.1 judge - reuse Chroma's exact implementation"""
+    
+    def __init__(self, api_key: str, model: str = "gpt-4.1-2025-04-14"):
+        self.api_key = api_key
+        self.model = model
+        # IMPLEMENTATION NEEDED: Use Chroma's providers/openai.py directly
         pass
 ```
 
@@ -245,11 +254,11 @@ Instead of manual calibration, use Chroma's proven judge implementation directly
 **Implementation Requirements:**
 ```python
 class ChromaCompatibleJudge:
-    """Implement Chroma's exact judge methodology with NVIDIA API backend"""
+    """Implement Chroma's exact judge methodology with identical OpenAI API backend"""
     
-    def __init__(self, nvidia_api_key: str):
-        # Adapt Chroma's LLMJudge to use NVIDIA API instead of OpenAI
-        self.nvidia_client = RateLimitedNvidiaClient(nvidia_api_key)
+    def __init__(self, openai_api_key: str):
+        # Use Chroma's exact LLMJudge implementation with OpenAI GPT-4.1
+        self.openai_client = OpenAIJudgeClient(openai_api_key)
         
         # NIAH Extension Judge Prompt (from evaluate_niah_extension.py)
         self.niah_prompt = """
@@ -286,12 +295,12 @@ class ChromaCompatibleJudge:
     
     def evaluate_niah_experiments(self, input_path: str, output_path: str) -> None:
         """Use NIAH-specific judge prompt for needle experiments"""
-        # IMPLEMENTATION NEEDED: Adapt Chroma's evaluate() method for NVIDIA API
+        # IMPLEMENTATION NEEDED: Use Chroma's exact evaluate() method with OpenAI API
         pass
         
     def evaluate_longmemeval_experiments(self, input_path: str, output_path: str) -> None:
         """Use LongMemEval-specific judge prompt for conversational QA"""
-        # IMPLEMENTATION NEEDED: Adapt Chroma's evaluate() method for NVIDIA API  
+        # IMPLEMENTATION NEEDED: Use Chroma's exact evaluate() method with OpenAI API  
         pass
 ```
 
@@ -302,8 +311,8 @@ class ChromaCompatibleJudge:
 - **Direct result comparability**: Can directly compare findings to Chroma's results
 
 #### **TASK REFINEMENT NEEDED**
-- **NVIDIA API Integration**: Adapt Chroma's OpenAI-based LLMJudge to work with NVIDIA API
-- **Rate Limiting**: Implement 40 req/min limiting within judge evaluation
+- **Direct Implementation**: Use Chroma's LLMJudge and OpenAI provider classes directly
+- **OpenAI API Setup**: Configure OpenAI API key for GPT-4.1 judge calls
 - **Prompt Selection**: Use appropriate prompt (NIAH vs LongMemEval) for each experiment type
 
 ---

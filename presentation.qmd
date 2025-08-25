@@ -58,7 +58,7 @@ format:
 
 ## Hypothesis
 
-1.  Long context allows us to skip RAG for certain situations that easily fit into context window
+1. Long context allows us to skip RAG for certain situations that easily fit into context window
 2. There is some context windows threshold where we observe a sharp dropoff in performance.
 3. Reranking does not hold value for long context windows, except when using reranker thresholds as filtering mechanism.
 4. Cost-adjusted performance favors RAG even when long context technically performs better, with the crossover point occurring at [X]% context window utilization.
@@ -79,5 +79,6 @@ We have results from context window retrieval. We will re-use the same datasets 
   - End-to-end latency
   - Memory utilization
 
+ABN AMRO annual report is 500k tokens.
 
 ---
