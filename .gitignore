@@ -207,7 +207,8 @@ marimo/_lsp/
 __marimo__/
 
 /.quarto/
-docs/*
+docs/site_libs
+docs/img
 data/chroma
 **/*.parquet
 data/chroma_db/*
@@ -227,6 +228,9 @@ logs/*
 .idea/*
 **/*.sqlite3
 **/*.sqlite3.bak
+# Large backup and data files
+batch2_results_backup.json
+**/long_context_questions.json
 chroma_db
 presentation.qmd
 chroma_longmemeval_*
