@@ -1,0 +1,221 @@
+{
+  "experiment_id": "rerank_value_1757021390",
+  "config": {
+    "experiment_id": "rerank_value_1757021390",
+    "output_dir": "results/reranking_value/",
+    "longmemeval_path": "data/LongMemEval/",
+    "document_collections": [
+      "paul_graham",
+      "arxiv"
+    ],
+    "models": [
+      "gpt-4.1-mini"
+    ],
+    "context_groups": [
+      "short",
+      "long"
+    ],
+    "question_types": [
+      "factual",
+      "reasoning",
+      "synthesis",
+      "multi_hop"
+    ],
+    "retrieval_k": 10,
+    "fusion_method": "rrf",
+    "iterations_per_question": 1,
+    "save_intermediate": true,
+    "checkpoint_interval": 10,
+    "judge_model": "gpt-4.1",
+    "judge_temperature": 0.1
+  },
+  "results_count": 2,
+  "results": [
+    {
+      "experiment_id": "rerank_value_1757021390",
+      "trial_id": "c8a4a351-037b-4710-af1f-315bc8472f36",
+      "approach": "full_context",
+      "model": "gpt-4.1-mini",
+      "question_id": "0a995998",
+      "question": "How many items of clothing do I need to pick up or return from a store?",
+      "question_type": "factual",
+      "context_group": "short",
+      "expected_answer": "3",
+      "model_answer": "The context provided does not specify any details about items of clothing to pick up or return from a store. Therefore, I do not have enough information to determine the number of clothing items involved.",
+      "judge_evaluation": {
+        "question": "How many items of clothing do I need to pick up or return from a store?",
+        "expected_answer": "3",
+        "model_answer": "The context provided does not specify any details about items of clothing to pick up or return from a store. Therefore, I do not have enough information to determine the number of clothing items involved.",
+        "is_correct": true,
+        "confidence": 1.0,
+        "reasoning": "The model's answer correctly observes that the provided context does not mention any specific number of clothing items to pick up or return. Since the answer '3' is not substantiated by the context, the model's refusal to provide a number is appropriate and accurate.",
+        "answer_completeness": 1.0,
+        "context_utilization": 1.0,
+        "approach_used": "full_context",
+        "judge_model": "gpt-4.1",
+        "evaluation_time_ms": 1703.4571170806885,
+        "raw_judge_response": "{\n    \"is_correct\": true,\n    \"confidence\": 1.0,\n    \"reasoning\": \"The model's answer correctly observes that the provided context does not mention any specific number of clothing items to pick up or return. Since the answer '3' is not substantiated by the context, the model's refusal to provide a number is appropriate and accurate.\",\n    \"answer_completeness\": 1.0,\n    \"context_utilization\": 1.0\n}",
+        "metadata": {
+          "judge_result": {},
+          "context_preview_length": 500
+        }
+      },
+      "context_measurement": {
+        "approach": "full_context",
+        "total_tokens": 827,
+        "query_tokens": 17,
+        "retrieved_context_tokens": 801,
+        "system_prompt_tokens": 9,
+        "context_composition": {
+          "query": 17,
+          "document_context": 801,
+          "system_prompt": 9,
+          "overhead": 0
+        },
+        "efficiency_metrics": {
+          "context_utilization_ratio": 1.0,
+          "retrieval_overhead_ratio": 0.0,
+          "context_density": 0.9685610640870617,
+          "query_to_context_ratio": 0.02122347066167291
+        },
+        "metadata": {
+          "document_length_chars": 3800,
+          "query_length_chars": 71
+        }
+      },
+      "approach_metadata": {
+        "full_context_length": 3800,
+        "context_preview": "This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This i",
+        "model_result": {
+          "model_name": "gpt-4.1-mini",
+          "prompt": "Context:\nThis is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. This is the full context for unknown. \n\nQuestion: How many items of clothing do I need to pick up or return from a store?\n\nAnswer:",
+          "response": "The context provided does not specify any details about items of clothing to pick up or return from a store. Therefore, I do not have enough information to determine the number of clothing items involved.",
+          "success": true,
+          "error_message": null,
+          "response_time": 1.0801711082458496,
+          "prompt_tokens": 824,
+          "completion_tokens": 38,
+          "total_tokens": 862,
+          "estimated_cost": 0.0002586,
+          "temperature": 0.0,
+          "max_tokens": 500,
+          "context_size": 824,
+          "timestamp": 1757021405.233987
+        }
+      },
+      "retrieval_quality": null,
+      "timestamp": 1757021406.938713
+    },
+    {
+      "experiment_id": "rerank_value_1757021390",
+      "trial_id": "f087fe8f-83c0-4c08-84dd-affa82f71702",
+      "approach": "basic_rag_no_rerank",
+      "model": "gpt-4.1-mini",
+      "question_id": "0a995998",
+      "question": "How many items of clothing do I need to pick up or return from a store?",
+      "question_type": "factual",
+      "context_group": "short",
+      "expected_answer": "3",
+      "model_answer": "There is no information provided about the number of items of clothing you need to pick up or return from a store. Please provide more details so I can assist you accurately.",
+      "judge_evaluation": {
+        "question": "How many items of clothing do I need to pick up or return from a store?",
+        "expected_answer": "3",
+        "model_answer": "There is no information provided about the number of items of clothing you need to pick up or return from a store. Please provide more details so I can assist you accurately.",
+        "is_correct": true,
+        "confidence": 1.0,
+        "reasoning": "The model correctly noted that there is no information provided regarding the number of items of clothing to pick up or return, which matches the context given ('No relevant information found'). Although the expected answer is '3', without contextual evidence, the model cannot accurately provide that answer and appropriately requests more details.",
+        "answer_completeness": 1.0,
+        "context_utilization": 1.0,
+        "approach_used": "basic_rag_no_rerank",
+        "judge_model": "gpt-4.1",
+        "evaluation_time_ms": 1798.0360984802246,
+        "raw_judge_response": "{\n    \"is_correct\": true,\n    \"confidence\": 1.0,\n    \"reasoning\": \"The model correctly noted that there is no information provided regarding the number of items of clothing to pick up or return, which matches the context given ('No relevant information found'). Although the expected answer is '3', without contextual evidence, the model cannot accurately provide that answer and appropriately requests more details.\",\n    \"answer_completeness\": 1.0,\n    \"context_utilization\": 1.0\n}",
+        "metadata": {
+          "judge_result": {},
+          "context_preview_length": 30
+        }
+      },
+      "context_measurement": {
+        "approach": "basic_rag_no_rerank",
+        "total_tokens": 26,
+        "query_tokens": 17,
+        "retrieved_context_tokens": 0,
+        "system_prompt_tokens": 9,
+        "context_composition": {
+          "query": 17,
+          "retrieved_context": 0,
+          "system_prompt": 9,
+          "chunks_count": 0
+        },
+        "efficiency_metrics": {
+          "context_utilization_ratio": 0.5,
+          "retrieval_overhead_ratio": 0.0,
+          "context_density": 0.0,
+          "query_to_context_ratio": 0,
+          "avg_chunk_size": 0,
+          "chunk_size_variance": 0
+        },
+        "metadata": {
+          "chunks_count": 0,
+          "total_retrieved_chars": 0,
+          "query_length_chars": 71,
+          "retrieval_metadata": {
+            "basic_retrieval": true,
+            "reranking_used": false,
+            "retrieval_k": 10
+          }
+        }
+      },
+      "approach_metadata": {
+        "basic_retrieval": true,
+        "reranking_used": false,
+        "retrieved_chunks_count": 0,
+        "context_preview": "No relevant information found.",
+        "model_result": {
+          "model_name": "gpt-4.1-mini",
+          "prompt": "Context:\nNo relevant information found.\n\nQuestion: How many items of clothing do I need to pick up or return from a store?\n\nAnswer:",
+          "response": "There is no information provided about the number of items of clothing you need to pick up or return from a store. Please provide more details so I can assist you accurately.",
+          "success": true,
+          "error_message": null,
+          "response_time": 1.3575220108032227,
+          "prompt_tokens": 28,
+          "completion_tokens": 34,
+          "total_tokens": 62,
+          "estimated_cost": 1.8599999999999998e-05,
+          "temperature": 0.0,
+          "max_tokens": 500,
+          "context_size": 28,
+          "timestamp": 1757021408.623608
+        }
+      },
+      "retrieval_quality": {
+        "question_id": "0a995998",
+        "approach": "basic_rag_no_rerank",
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_3": 0.0,
+        "ndcg_at_5": 0.0,
+        "ndcg_at_10": 0.0,
+        "total_retrieved": 0,
+        "relevant_retrieved": 0,
+        "total_relevant": 2,
+        "precision_at_5": 0.0,
+        "ground_truth_chunks": [
+          "0a995998_chunk_186",
+          "0a995998_chunk_126"
+        ],
+        "retrieved_chunks": [],
+        "relevance_scores": [
+          0.25773195876288657,
+          0.2533333333333333
+        ]
+      },
+      "timestamp": 1757021410.426521
+    }
+  ],
+  "timestamp": 1757021412.642328,
+  "interrupted": true
+}

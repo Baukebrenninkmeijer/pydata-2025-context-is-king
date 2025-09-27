@@ -1,0 +1,86 @@
+{
+  "question_type": "synthesis",
+  "count": 10,
+  "questions_answers": [
+    {
+      "question": "Based on the market performance data, which sector showed the highest growth rate between 2018 and 2023?",
+      "answer": "The renewable energy sector showed the highest growth rate between 2018 and 2023, with a 247% increase.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_01"
+    },
+    {
+      "question": "Based on the market performance data, which sector showed the highest growth rate between 2019 and 2023?",
+      "answer": "The biotechnology sector showed the highest growth rate between 2019 and 2023, with a 189% increase.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_02"
+    },
+    {
+      "question": "Based on the market performance data, which sector showed the highest growth rate between 2020 and 2023?",
+      "answer": "The artificial intelligence sector showed the highest growth rate between 2020 and 2023, with a 312% increase.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_03"
+    },
+    {
+      "question": "Based on the market performance data, which sector showed the highest growth rate between 2018 and 2023?",
+      "answer": "The quantum computing sector showed the highest growth rate between 2018 and 2023, with a 156% increase.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_04"
+    },
+    {
+      "question": "Based on the market performance data, which sector showed the highest growth rate between 2019 and 2023?",
+      "answer": "The space technology sector showed the highest growth rate between 2019 and 2023, with a 203% increase.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_05"
+    },
+    {
+      "question": "What can be concluded about GlobalTech's market strategy based on their R&D investment of 22% of revenue and patent filings of 340 per year?",
+      "answer": "Based on GlobalTech's R&D investment of 22% of revenue and patent filings of 340 per year, the company is pursuing a innovation-first strategy focused on technological advancement.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_06"
+    },
+    {
+      "question": "What can be concluded about MarketLeader's market strategy based on their marketing spend of $890M annually and customer acquisition cost of $45?",
+      "answer": "Based on MarketLeader's marketing spend of $890M annually and customer acquisition cost of $45, the company is pursuing a growth-oriented strategy focused on market expansion.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_07"
+    },
+    {
+      "question": "What can be concluded about EfficiencyCorp's market strategy based on their operational efficiency of 94% and cost reduction of 15% annually?",
+      "answer": "Based on EfficiencyCorp's operational efficiency of 94% and cost reduction of 15% annually, the company is pursuing a efficiency-driven strategy focused on operational excellence.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_08"
+    },
+    {
+      "question": "What can be concluded about CustomerFirst's market strategy based on their customer satisfaction of 4.8/5.0 and retention rate of 96%?",
+      "answer": "Based on CustomerFirst's customer satisfaction of 4.8/5.0 and retention rate of 96%, the company is pursuing a customer-centric strategy focused on user experience.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_09"
+    },
+    {
+      "question": "What can be concluded about SustainableFuture's market strategy based on their carbon neutrality of achieved in 2023 and renewable energy use of 87%?",
+      "answer": "Based on SustainableFuture's carbon neutrality of achieved in 2023 and renewable energy use of 87%, the company is pursuing a sustainability-focused strategy focused on environmental impact.",
+      "question_type": "synthesis",
+      "domain": "synthetic",
+      "complexity": "complex",
+      "id": "synthesis_10"
+    }
+  ]
+}

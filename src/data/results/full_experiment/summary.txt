@@ -1,0 +1,50 @@
+📊 EXPERIMENT RESULTS SUMMARY
+==================================================
+
+Total tests: 152
+Successful tests: 152
+Failed tests: 0
+Success rate: 100.0%
+
+🏆 Success Rate by Model:
+                       total_tests  successful_tests success_rate
+model_name                                                       
+claude-haiku-3.5                15                15       100.0%
+claude-opus-4.1                 18                18       100.0%
+claude-sonnet-4                 18                18       100.0%
+gemini-2.5-flash                18                18       100.0%
+gemini-2.5-flash-lite           17                17       100.0%
+gemini-2.5-pro                  18                18       100.0%
+gpt-5                           18                18       100.0%
+gpt-5-mini                      15                15       100.0%
+gpt-5-nano                      15                15       100.0%
+
+⚡ Performance Analysis (Successful Tests Only):
+Average duration: 3.00s
+Average throughput: 9706.3 tokens/sec
+
+📈 Performance by Context Size:
+             duration_seconds             tokens_per_second          
+                         mean   std count              mean       std
+context_size                                                         
+1                        1.17  0.49     9              1.07      0.62
+10                       0.98  0.52    27             14.25      9.92
+100                      1.04  0.66    27            140.41     92.04
+1000                     1.05  0.58    27           1375.27    964.05
+10000                    1.40  0.58    27           9009.87   5456.24
+100000                   6.21  4.74    27          28364.75  23923.03
+1000000                 19.69  4.24     8          53114.97  12510.64
+
+🚀 Performance by Model:
+                      duration_seconds             tokens_per_second          
+                                  mean   std count              mean       std
+model_name                                                                    
+claude-haiku-3.5                  4.32  6.50    15           2440.48   2543.11
+claude-opus-4.1                   3.15  3.48    18           2671.36   4062.76
+claude-sonnet-4                   2.13  1.92    18           4034.47   6496.55
+gemini-2.5-flash                  4.65  8.19    18          16947.21  20678.76
+gemini-2.5-flash-lite             2.09  4.51    17          28171.73  35856.62
+gemini-2.5-pro                    5.56  7.25    18          12541.10  18714.64
+gpt-5                             1.70  2.26    18           4382.50   6206.46
+gpt-5-mini                        1.80  1.50    15           6409.98   9516.81
+gpt-5-nano                        1.30  1.06    15           8886.45  12967.25

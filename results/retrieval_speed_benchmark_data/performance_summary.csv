@@ -1,0 +1,22 @@
+Configuration,k,Mean Time (ms),Reranking
+Full Context,-1,2303.61,No
+Basic Rag,1,272.94,No
+Basic Rag + Rerank,1,247.77,Yes
+Enhanced Rag,1,1858.79,No
+Enhanced Rag + Rerank,1,1914.19,Yes
+Basic Rag,5,203.58,No
+Basic Rag + Rerank,5,283.31,Yes
+Enhanced Rag,5,1690.89,No
+Enhanced Rag + Rerank,5,2122.23,Yes
+Basic Rag,10,158.19,No
+Basic Rag + Rerank,10,241.13,Yes
+Enhanced Rag,10,1612.20,No
+Enhanced Rag + Rerank,10,1933.39,Yes
+Basic Rag,20,167.85,No
+Basic Rag + Rerank,20,312.99,Yes
+Enhanced Rag,20,1885.85,No
+Enhanced Rag + Rerank,20,2006.71,Yes
+Basic Rag,50,189.69,No
+Basic Rag + Rerank,50,497.13,Yes
+Enhanced Rag,50,2035.82,No
+Enhanced Rag + Rerank,50,2461.97,Yes

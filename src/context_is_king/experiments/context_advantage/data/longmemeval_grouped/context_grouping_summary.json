@@ -1,0 +1,57 @@
+{
+  "short": {
+    "token_range": [
+      0,
+      25000
+    ],
+    "question_count": 0,
+    "avg_context_tokens": 0.0,
+    "median_context_tokens": 0.0,
+    "avg_complexity_score": 0.0,
+    "question_types": {},
+    "domains": {}
+  },
+  "medium": {
+    "token_range": [
+      25001,
+      75000
+    ],
+    "question_count": 0,
+    "avg_context_tokens": 0.0,
+    "median_context_tokens": 0.0,
+    "avg_complexity_score": 0.0,
+    "question_types": {},
+    "domains": {}
+  },
+  "long": {
+    "token_range": [
+      75001,
+      150000
+    ],
+    "question_count": 306,
+    "avg_context_tokens": 112672.8431372549,
+    "median_context_tokens": 112767.0,
+    "avg_complexity_score": 0.5209803921568628,
+    "question_types": {
+      "reasoning": 217,
+      "factual": 81,
+      "synthesis": 5,
+      "multi_hop": 3
+    },
+    "domains": {
+      "longmemeval": 306
+    }
+  },
+  "extended": {
+    "token_range": [
+      150001,
+      -1
+    ],
+    "question_count": 0,
+    "avg_context_tokens": 0.0,
+    "median_context_tokens": 0.0,
+    "avg_complexity_score": 0.0,
+    "question_types": {},
+    "domains": {}
+  }
+}

@@ -1,0 +1,592 @@
+@startuml classes_pydata_context_king
+set namespaceSeparator none
+class "AbsoluteAssessment" as context_is_king.evaluation.judge_evaluator.AbsoluteAssessment {
+  confidence : float?
+  is_correct : bool
+  reasoning : str?
+}
+class "AssembledContext" as context_is_king.rag_pipeline.context_assembly.engine.AssembledContext {
+  chunks_used : str[]
+  context : str
+  context_type : str
+  metadata : Map<str,Any>
+  token_count : int
+  truncated : bool
+}
+class "ContentOverlapMetrics" as context_is_king.datasets.longmemeval.ground_truth_extraction.ContentOverlapMetrics {
+  encoding : Encoding
+  rouge_scorer : RougeScorer?
+  asymmetric_jaccard(query_text: str, chunk_text: str, weight: float) -> float
+  calculate_primary_metrics(focused_text: str, chunk_text: str) -> Map<str,float>
+  jaccard_similarity(text1: str, text2: str) -> float
+  rouge_l_similarity(text1: str, text2: str) -> float
+  token_containment(focused_text: str, chunk_text: str) -> float
+}
+class "ContextAssembly" as context_is_king.rag_pipeline.context_assembly.engine.ContextAssembly {
+  config
+  templates : dict
+  tokenizer : Encoding
+  add_custom_template(name: str, template: str) -> None
+  assemble_conversation_context(conversation_turns: Map<str,str>, current_query: str, max_turns: int) -> AssembledContext
+  assemble_focused_context(content_items: str, DocumentChunk[], query: str, focus_strategy: str, max_items: int) -> AssembledContext
+  assemble_full_context(document: Document, query: str, format_template: str) -> AssembledContext
+  assemble_rag_context(retrieved_chunks: RetrievalResult[], query: str, format_template: str, max_chunks: int) -> AssembledContext
+  calculate_context_stats(context: str) -> Map<str,Any>
+  compare_context_strategies(contexts: AssembledContext[], query: str) -> Map<str,Any>
+  get_template(template_name: str) -> str
+}
+class "ContextGroundedAssessment" as context_is_king.evaluation.judge_evaluator.ContextGroundedAssessment {
+  confidence : float?
+  is_correct_given_context : bool
+  reasoning : str?
+}
+class "ContextMeasurement" as context_is_king.evaluation.context_tracker.ContextMeasurement {
+  approach : str
+  context_composition : Map<str,int>
+  efficiency_metrics : Map<str,float>
+  metadata : Map<str,Any>
+  query_tokens : int
+  retrieved_context_tokens : int
+  system_prompt_tokens : int
+  total_tokens : int
+}
+class "ContextTracker" as context_is_king.evaluation.context_tracker.ContextTracker {
+  encoding : Encoding
+  encoding_name : str
+  analyze_context_scaling(measurements: ContextMeasurement[], group_by: str) -> Map<str,Any>
+  compare_measurements(measurements: ContextMeasurement[]) -> Map<str,Any>
+  count_tokens(text: str) -> int
+  get_tracker_stats() -> Map<str,Any>
+  measure_full_context_approach(query: str, full_document_context: str, system_prompt: str) -> ContextMeasurement
+  measure_rag_approach(query: str, retrieved_chunks: str[], system_prompt: str, approach_name: str, retrieval_metadata: Map<str,Any>) -> ContextMeasurement
+}
+class "ContextWindowExperiment" as context_is_king.experiments.scaling.ContextWindowExperiment {
+  DEFAULT_TOKEN_SIZES : list
+  MODELS : dict
+  MODEL_TOKEN_LIMITS : dict
+  checkpoint_dir
+  data_dir : Path
+  encoding : Encoding
+  orq_api_key
+  orq_client : OpenAI
+  cleanup_checkpoint(experiment_id: str)
+  create_text_with_exact_tokens(target_tokens: int, sentences: str[]) -> str
+  display_model_info()
+  list_checkpoints() -> list
+  load_experiment(experiment_id: str, with_analyzer: bool)
+  prepare_text_data() -> str[]
+  recover_results_from_checkpoint(experiment_id: str) -> ExperimentResult[]
+  run_experiment(models: Map<str,str>, token_sizes: int[], iterations_per_test: int, sentences: str[], resume_from: str?, save_checkpoints: bool) -> ExperimentResult[]
+  run_single_experiment(model_name: str, model_id: str, token_count: int, iteration: int, sentences: str[]) -> ExperimentResult
+  time_llm_call(model_name: str, model_id: str, context_text: str, iteration: int, max_retries: int) -> ExperimentResult
+}
+class "ConversationChunker" as context_is_king.datasets.longmemeval.ground_truth_extraction.ConversationChunker {
+  chunk_size : int
+  encoding : Encoding
+  overlap : int
+  chunk_conversation(conversation_text: str, custom_id: str) -> Map<str,Any>
+}
+class "CrossReferenceScore" as context_is_king.evaluation.metrics.CrossReferenceScore {
+  connection_accuracy : float
+  individual_retrievals : RetrievalScore[]
+  overall_score : float
+  synthesis_quality : float
+}
+class "Document" as context_is_king.rag_pipeline.types.Document {
+  content : str
+  doc_id : str
+  doc_type : str
+  metadata : Map<str,Any>
+  source : str
+  set_doc_id(v: str, info) -> str
+}
+class "DocumentChunk" as context_is_king.rag_pipeline.types.DocumentChunk {
+  chunk_id : str
+  content : str
+  doc_id : str?
+  end_char : int?
+  full_id
+  metadata : Map<str,Any>
+  start_char : int?
+}
+class "DocumentProcessor" as context_is_king.rag_pipeline.document_processing.processor.DocumentProcessor {
+  config
+  text_splitter : RecursiveCharacterTextSplitter
+  inject_distractors(document: Document, distractors: str[], count: int) -> Document
+  load_chroma_distractors(distractors_file: str) -> str[]
+  load_chroma_needles(needles_file: str) -> Map<str,Any>
+  load_document(file_path: str) -> Document
+  load_documents(file_paths: str[]) -> Document[]
+  process_documents(documents: Document[]) -> DocumentChunk[]
+  save_processed_documents(documents: Document[], output_dir: str) -> None
+  shuffle_document(document: Document, intensity: str) -> Document
+}
+class "DualRetrieval" as context_is_king.rag_pipeline.query_enhancement.dual_retrieval.DualRetrieval {
+  hypothetical_answerer
+  query_rewriter
+  retrieval_engine
+  analyze_retrieval_diversity(result: DualRetrievalResult) -> Map<str,Any>
+  retrieve_dual(query: str, collection: Collection, k: int, fusion_method: str, dimensions: int) -> DualRetrievalResult
+}
+class "DualRetrievalResult" as context_is_king.rag_pipeline.query_enhancement.dual_retrieval.DualRetrievalResult {
+  combined_results : RetrievalResult[]
+  fusion_metadata : Map<str,Any>
+  original_query : str
+  original_results : RetrievalResult[]
+  rewritten_query : str
+  rewritten_results : RetrievalResult[]
+  total_time_ms : float
+}
+class "EmbeddingStorageManager" as context_is_king.rag_pipeline.embedding_storage.manager.EmbeddingStorageManager {
+  chroma_client : Client
+  config
+  embedding_model : SentenceTransformer
+  batch_embed_and_store(chunks: DocumentChunk[], collection: Collection) -> None
+  clear_cache() -> None
+  create_collection(collection_name: str, metadata: Map<str,Any>) -> Collection
+  delete_collection(collection_name: str) -> bool
+  embed_query(query: str) -> float[]
+  get_collection_stats(collection_name: str) -> Map<str,Any>
+  get_embedding_stats() -> Map<str,Any>
+  list_collections() -> str[]
+  search(query: str, collection_name: str, k: int) -> list
+  store_chunks(chunks: DocumentChunk[], collection_name: str) -> bool
+  warm_up_model() -> None
+}
+class "ExperimentAnalyzer" as context_is_king.experiments.scaling.ExperimentAnalyzer {
+  df : DataFrame
+  results : ExperimentResult[]
+  analyze_response_sizes()
+  analyze_streaming_performance()
+  create_response_size_visualizations(save_dir: Path, show_plots: bool)
+  create_ttft_visualizations(save_dir: Path, show_plots: bool)
+  create_visualizations(save_dir: Path, show_plots: bool, figsize)
+  create_visualizations_new(save_dir: Path, show_plots: bool)
+  print_summary()
+  save_results(experiment_id: str, results_dir: Path) -> Path
+}
+class "ExperimentCheckpoint" as context_is_king.experiments.scaling.ExperimentCheckpoint {
+  completed_results : list
+  experiment_config : dict
+  experiment_id : str
+  remaining_tasks : list
+  timestamp : str
+}
+class "ExperimentConfig" as context_is_king.rag_pipeline.types.ExperimentConfig {
+  batch_size : int
+  context_types : str[]
+  context_window_sizes : int[]
+  distractor_counts : int[]
+  distractors : str[]
+  experiment_id : str
+  experiment_type : str
+  haystacks : str[]
+  judge_prompt_type : str
+  needles : str[]
+  reranking : bool[]
+  results_dir : str
+  retrieval_k : int[]
+  save_intermediate : bool
+  shuffle_types : str[]
+}
+class "ExperimentController" as context_is_king.rag_pipeline.orchestration.controller.ExperimentController {
+  config
+  context_assembly
+  doc_processor
+  embedding_manager
+  generation
+  reranker
+  retrieval_engine
+  get_pipeline_status() -> Map<str,Any>
+  run_comparative_experiment(base_config: ExperimentConfig, variations: Map<str,Any>) -> Map<str,ExperimentResults>
+  run_experiment(experiment_config: ExperimentConfig) -> ExperimentResults
+  save_experiment_results(results: ExperimentResults, output_path: str) -> None
+  validate_experiment_config(config: ExperimentConfig) -> Map<str,Any>
+}
+class "ExperimentResult" as context_is_king.experiments.scaling.ExperimentResult {
+  context_size : int
+  duration_seconds : float
+  error_message : str?
+  iteration : int?
+  model_name : str
+  response_length : int?
+  response_text : str?
+  response_tokens : int?
+  streaming_chunks : int?
+  success : bool
+  time_to_first_token : float?
+  timestamp : str?
+  tokens_per_second : float
+  tokens_per_second_generation : float?
+  total_generation_time : float?
+}
+class "ExperimentResults" as context_is_king.rag_pipeline.types.ExperimentResults {
+  config
+  experiment_id : str
+  generation_results : GenerationResult[]
+  judge_results : JudgeResult[]
+  metadata : Map<str,Any>
+  retrieval_metrics : Map<str,float>
+  summary_stats : Map<str,Any>
+}
+class "ExperimentResults" as context_is_king.evaluation.metrics.ExperimentResults {
+  avg_cross_reference_accuracy : float
+  avg_response_time : float
+  avg_retrieval_accuracy : float
+  composition : str
+  context_size : int
+  cross_reference_scores : CrossReferenceScore[]
+  experiment_id : str
+  model_name : str
+  position_analysis
+  retrieval_scores : RetrievalScore[]
+  success_rate : float
+  total_cost : float
+}
+class "GenerationInterface" as context_is_king.rag_pipeline.generation.interface.GenerationInterface {
+  config
+  judge_client
+  nvidia_client
+  batch_evaluate(evaluations: dict[], batch_size: int) -> JudgeResult[]
+  batch_generate(contexts: str[], queries: str[], batch_size: int) -> GenerationResult[]
+  evaluate_response(response: str, question: str, correct_answer: str, experiment_type: str) -> JudgeResult
+  generate_response(context: str, query: str) -> GenerationResult
+  get_generation_stats() -> Map<str,Any>
+  test_connections() -> Map<str,bool>
+}
+class "GenerationResult" as context_is_king.rag_pipeline.types.GenerationResult {
+  context : str
+  latency_ms : float?
+  metadata : Map<str,Any>
+  model : str
+  query : str
+  response : str
+  token_usage : Map<str,int>
+}
+class "GroundTruthExtractor" as context_is_king.datasets.longmemeval.ground_truth_extraction.GroundTruthExtractor {
+  chroma_path : str
+  chunker
+  client : ClientAPI
+  collection_prefix : str
+  collections : Map<str,Any>
+  embedding_dimensions : int
+  embedding_model : str
+  openai_client : OpenAI
+  overlap_metrics
+  prompt_cleaner
+  cleanup_checkpoint(checkpoint_path: str) -> None
+  extract_longmemeval_ground_truth(focused_df: pd.DataFrame, similarity_threshold: float, max_chunks_per_question: int, primary_metric: str, query_strategy: str, debug_mode: bool, limit_questions: int?) -> Map<str,Any>
+  get_collection_stats() -> Map<str,Any>
+  ingest_longmemeval_conversations(full_conversations_df: pd.DataFrame, test_mode: bool, num_docs: int?, checkpoint_path: str?) -> None
+  load_ingestion_checkpoint(checkpoint_path: str) -> dict
+  save_ingestion_checkpoint(checkpoint_path: str, batch_num: int, total_batches: int, processed_conversations: list, remaining_conversations: list, total_chunks_ingested: int) -> None
+  save_longmemeval_ground_truth(ground_truth_data: Map<str,Any>, output_path: str)
+  validate_collections_health(conversation_ids: str[]) -> bool
+}
+class "HypotheticalAnswerer" as context_is_king.rag_pipeline.query_enhancement.dual_retrieval.HypotheticalAnswerer {
+  hypothetical_prompt_template : str
+  model
+  model_interface
+  generate_hypothetical_answer(query: str, verbose: bool, use_async: bool) -> str?
+}
+class "JudgeEvaluation" as context_is_king.evaluation.judge_evaluator.JudgeEvaluation {
+  answer_completeness : float
+  approach_used : str
+  confidence : float
+  context_grounded_confidence : float
+  context_grounded_reasoning : str
+  context_utilization : float
+  evaluation_time_ms : float
+  expected_answer : str
+  is_correct : bool
+  is_correct_given_context : bool
+  judge_model : str
+  metadata : Map<str,Any>
+  model_answer : str
+  question : str
+  raw_judge_response : str
+  reasoning : str
+  retrieval_gap : float
+}
+class "JudgeEvaluator" as context_is_king.evaluation.judge_evaluator.JudgeEvaluator {
+  evaluation_prompt_template : str
+  judge_model : str
+  model_interface
+  quiet_mode : bool
+  analyze_evaluation_patterns(evaluations: JudgeEvaluation[]) -> Map<str,Any>
+  batch_evaluate_answers(evaluations: Map<str,Any>) -> JudgeEvaluation[]
+  evaluate_answer(question: str, expected_answer: str, model_answer: str, context_preview: str, max_retries: int) -> RAGEvaluation | bool
+}
+class "JudgeResult" as context_is_king.rag_pipeline.types.JudgeResult {
+  confidence : float?
+  correct_answer : str
+  is_correct : bool
+  judge_model : str
+  judge_response : str
+  metadata : Map<str,Any>
+  model_response : str
+  question : str
+}
+class "LongMemEvalEvaluator" as context_is_king.evaluation.metrics.LongMemEvalEvaluator {
+  needle_evaluator
+  evaluate_answer(expected: str, actual: str, question_type: str) -> float
+  evaluate_context_group_performance(results: Tuple[str, str, str, float[]], group_name: str) -> Map<str,Any>
+}
+class "LongMemEvalPromptCleaner" as context_is_king.datasets.longmemeval.ground_truth_extraction.LongMemEvalPromptCleaner {
+  clean_prompt(prompt_text: str) -> str
+  validate_cleaning(original: str, cleaned: str, sample_id: str) -> bool
+}
+class "ModelConfig" as context_is_king.models.interface.ModelConfig {
+  api_name : str
+  cost_per_1k_tokens : float
+  max_context_tokens : int
+  name : str
+  provider : str
+  supports_system_prompt : bool
+}
+class "ModelInterface" as context_is_king.models.interface.ModelInterface {
+  MODELS : dict
+  async_client : AsyncOpenAI
+  client : OpenAI
+  default_base_delay : float
+  default_max_retries : int
+  encoding : Encoding
+  batch_query_models(queries: tuple[str, str[]], system_prompt: str?, temperature: float, max_tokens: int, max_concurrent: int) -> QueryResult[]
+  count_tokens(text: str) -> int
+  estimate_cost(model_name: str, prompt_tokens: int, completion_tokens: int) -> float
+  get_claude_haiku_models() -> Map<str,ModelConfig>
+  get_claude_sonnet_models() -> Map<str,ModelConfig>
+  get_context_sizes_for_pair(smaller_model: str, larger_model: str) -> int[]
+  get_gpt4_family_models() -> Map<str,ModelConfig>
+  get_model_comparison_pairs() -> tuple[str, str[]]
+  get_model_config(model_name: str) -> ModelConfig
+  print_available_models() -> None
+  query_model(model_name: str, prompt: str, system_prompt: str?, temperature: float, max_tokens: int, timeout: float) -> QueryResult
+  query_model_async(model_name: str, prompt: str, system_prompt: str?, temperature: float, max_tokens: int, timeout: float, max_retries: int, base_delay: float) -> QueryResult
+  query_model_sync(model_name: str, prompt: str, system_prompt: str?, temperature: float, max_retries: int, timeout: float, max_tokens: int) -> QueryResult
+  test_connection(model_name: str) -> bool
+  validate_context_size(model_name: str, context_size: int) -> bool
+}
+class "NeedleEvaluator" as context_is_king.evaluation.metrics.NeedleEvaluator {
+  stop_words : set
+  analyze_position_bias(results: Tuple[str, RetrievalScore[]]) -> PositionAnalysis
+  calculate_completeness(expected: str, actual: str) -> float
+  calculate_exact_match(expected: str, actual: str) -> bool
+  calculate_partial_match(expected: str, actual: str) -> float
+  calculate_semantic_similarity(expected: str, actual: str) -> float
+  evaluate_cross_reference(expected_connections: str[], actual_response: str, individual_needles: Tuple[str, str[]]) -> CrossReferenceScore
+  evaluate_retrieval(expected_answer: str, actual_answer: str, needle_position: str?) -> RetrievalScore
+  extract_key_terms(text: str) -> Set
+  normalize_text(text: str) -> str
+}
+class "OpenAIJudgeClient" as context_is_king.rag_pipeline.generation.interface.OpenAIJudgeClient {
+  api_key : str
+  client : OpenAI
+  judge_prompts : dict
+  model : str
+  batch_evaluate(evaluations: dict[], batch_size: int) -> JudgeResult[]
+  evaluate_response(response: str, question: str, correct_answer: str, prompt_type: str) -> JudgeResult
+}
+class "PipelineConfig" as context_is_king.rag_pipeline.types.PipelineConfig {
+  chroma_db_path : str
+  chunk_overlap : int
+  chunk_size : int
+  default_k : int
+  embedding_batch_size : int
+  embedding_device : str
+  embedding_model : str
+  judge_model : str
+  large_llm : str
+  max_context_length : int
+  model_config : dict
+  nvidia_api_key : str?
+  openai_api_key : str?
+  orq_api_key : str?
+  orq_base_url : str
+  quiet_mode : bool
+  reranker_batch_size : int
+  reranker_device : str
+  reranker_model : str
+  similarity_threshold : float
+  small_llm : str
+}
+class "PlotManager" as context_is_king.plotting.core.PlotManager {
+  figsize : tuple
+  style : str
+  aggregate_by_groups(df: pd.DataFrame, group_cols: list, value_col: str, confidence: float) -> pd.DataFrame
+  apply_formatters(ax: plt.Axes, x_type: str, y_type: str)
+  apply_log_scale(ax: plt.Axes, x: bool, y: bool)
+  calculate_ci(values: np.ndarray, confidence: float) -> Tuple
+  comparison_plot(df: pd.DataFrame, metric: str, groupby: str, plot_type: str) -> plt.Figure
+  configure_style(style: str)
+  create_subplots(nrows: int, ncols: int, figsize: Tuple) -> Tuple
+  get_provider_color(provider_name: str) -> str
+  line_plot_with_groups(df: pd.DataFrame, x_col: str, y_col: str, group_col: str, confidence: float, log_x: bool, log_y: bool) -> plt.Figure
+  plot_with_ci(ax: plt.Axes, x: np.ndarray, y: np.ndarray, yerr: np.ndarray, label: str, color: str, alpha_fill: float) -> None
+  save_figure(fig: plt.Figure, filename: str, output_dir: str, dpi: int) -> Path
+  set_figure_size(plot_type: str)
+}
+class "PositionAnalysis" as context_is_king.evaluation.metrics.PositionAnalysis {
+  best_position : str
+  position_bias : float
+  position_ranges : Map<str,float>
+  worst_position : str
+}
+class "QueryResult" as context_is_king.models.interface.QueryResult {
+  completion_tokens : int
+  context_size : int
+  error_message : str?
+  estimated_cost : float
+  max_tokens : int
+  model_name : str
+  prompt : str
+  prompt_tokens : int
+  response : str
+  response_time : float
+  success : bool
+  temperature : float
+  timestamp : float
+  total_tokens : int
+}
+class "QueryRewriteResult" as context_is_king.rag_pipeline.query_enhancement.query_rewriter.QueryRewriteResult {
+  metadata : Map<str,Any>
+  original_query : str
+  rewrite_time_ms : float
+  rewritten_query : str
+  success : bool
+}
+class "QueryRewriter" as context_is_king.rag_pipeline.query_enhancement.query_rewriter.QueryRewriter {
+  model
+  model_interface
+  rewrite_prompt_template : str
+  analyze_rewrite_quality(result: QueryRewriteResult) -> Map<str,Any>
+  batch_rewrite_queries(queries: str[]) -> QueryRewriteResult[]
+  get_rewriter_stats() -> Map<str,Any>
+  rewrite_query(query: str, verbose: bool) -> QueryRewriteResult
+}
+class "RAGEvaluation" as context_is_king.evaluation.judge_evaluator.RAGEvaluation {
+  absolute_assessment
+  answer_completeness : float?
+  context_grounded_assessment
+  context_utilization : float?
+  model_config : dict
+}
+class "RateLimitedNvidiaClient" as context_is_king.rag_pipeline.generation.interface.RateLimitedNvidiaClient {
+  api_key : str
+  base_url : str
+  client : Client
+  model : str
+  rate_limit : int
+  request_times : deque
+  batch_requests(requests: dict[], batch_size: int) -> dict[]
+  make_request(messages: Map<str,str>) -> Map<str,Any>
+}
+class "RerankerModule" as context_is_king.rag_pipeline.reranking.module.RerankerModule {
+  config
+  reranker : CrossEncoder
+  analyze_reranking_impact(original: RetrievalResult[], reranked: RetrievalResult[]) -> Map<str,Any>
+  batch_rerank(queries: str[], results_lists: list[RetrievalResult[]]) -> list[RetrievalResult[]]
+  evaluate_reranking_effectiveness(query: str, original_results: RetrievalResult[], reranked_results: RetrievalResult[], ground_truth_chunk_ids: str[]) -> Map<str,float>
+  get_model_stats() -> Map<str,Any>
+  rerank_results(query: str, retrieval_results: RetrievalResult[], verbose: bool) -> RetrievalResult[]
+  warm_up_model() -> None
+}
+class "ResultsAggregator" as context_is_king.evaluation.metrics.ResultsAggregator {
+  aggregate_model_performance(results: ExperimentResults[]) -> Map<str,Dict>
+  compare_context_capacity_groups(high_capacity_results: Map<str,Any>, medium_capacity_results: Map<str,Any>) -> Map<str,Any>
+  save_results(results: Map<str,Any>, output_path: Path) -> None
+}
+class "RetrievalEngine" as context_is_king.rag_pipeline.retrieval.engine.RetrievalEngine {
+  config
+  embedding_manager : EmbeddingStorageManager
+  openai_client : OpenAI
+  analyze_retrieval_patterns(results: RetrievalResult[], query: str) -> Map<str,Any>
+  benchmark_retrieval_speed(queries: str[], collection: Collection, k: int) -> Map<str,float>
+  calculate_retrieval_metrics(retrieved_chunks: RetrievalResult[], ground_truth_chunk_ids: str[], k_values: int[]) -> Map<str,float>
+  get_embedding_for_query(query: str, dimensions: int, retries: int) -> float[]
+  retrieve_chunks(collection: Collection, query: str?, query_embedding: float[], k: int, dimensions: int, retries: int) -> RetrievalResult[]
+  retrieve_with_metadata_filter(query: str, collection: Collection, filters: Map<str,Any>, k: int) -> RetrievalResult[]
+}
+class "RetrievalResult" as context_is_king.rag_pipeline.types.RetrievalResult {
+  chunk
+  final_score
+  rank : int
+  rerank_score : float?
+  reranked : bool
+  similarity_score : float
+}
+class "RetrievalScore" as context_is_king.evaluation.metrics.RetrievalScore {
+  completeness_score : float
+  exact_match : bool
+  overall_score : float
+  partial_match_score : float
+  position_accuracy : bool
+  semantic_similarity : float
+}
+class "ScalingPlotter" as context_is_king.plotting.experiments.scaling.ScalingPlotter {
+  df
+  pm
+  calculate_scaling_exponents() -> pd.DataFrame
+  generate_all_plots(output_dir: str) -> Map<str,plt.Figure>
+  get_scaling_statistics() -> pd.DataFrame
+  plot_duration_by_provider(show_ci: bool, log_y: bool, save_path: str?) -> plt.Figure
+  plot_duration_throughput_dual(save_path: str?) -> plt.Figure
+  plot_polynomial_fits(degree: int, show_r2: bool, save_path: str?) -> plt.Figure
+  plot_provider_summary_dashboard(save_path: str?) -> plt.Figure
+  plot_scaling_examples(save_path: str?) -> plt.Figure
+  plot_theoretical_comparison(include_exponential: bool, save_path: str?) -> plt.Figure
+  plot_throughput_by_provider(show_ci: bool, log_y: bool, save_path: str?) -> plt.Figure
+}
+class "Settings" as context_is_king.rag_pipeline.config.Settings {
+  chroma_db_path : str?
+  chunk_overlap : int?
+  chunk_size : int?
+  default_k : int?
+  embedding_batch_size : int?
+  embedding_device : str?
+  embedding_model : str?
+  judge_model : str?
+  max_context_length : int?
+  model_config : SettingsConfigDict
+  nvidia_api_key : str?
+  nvidia_model : str?
+  nvidia_rate_limit : int?
+  openai_api_key : str?
+  reranker_batch_size : int?
+  reranker_device : str?
+  reranker_model : str?
+  similarity_threshold : float?
+  to_pipeline_config() -> PipelineConfig
+}
+context_is_king.datasets.longmemeval.ground_truth_extraction.ContentOverlapMetrics --* context_is_king.datasets.longmemeval.ground_truth_extraction.GroundTruthExtractor : overlap_metrics
+context_is_king.datasets.longmemeval.ground_truth_extraction.ConversationChunker --* context_is_king.datasets.longmemeval.ground_truth_extraction.GroundTruthExtractor : chunker
+context_is_king.datasets.longmemeval.ground_truth_extraction.LongMemEvalPromptCleaner --* context_is_king.datasets.longmemeval.ground_truth_extraction.GroundTruthExtractor : prompt_cleaner
+context_is_king.evaluation.judge_evaluator.AbsoluteAssessment --* context_is_king.evaluation.judge_evaluator.RAGEvaluation : absolute_assessment
+context_is_king.evaluation.judge_evaluator.ContextGroundedAssessment --* context_is_king.evaluation.judge_evaluator.RAGEvaluation : context_grounded_assessment
+context_is_king.evaluation.metrics.NeedleEvaluator --* context_is_king.evaluation.metrics.LongMemEvalEvaluator : needle_evaluator
+context_is_king.evaluation.metrics.PositionAnalysis --* context_is_king.evaluation.metrics.ExperimentResults : position_analysis
+context_is_king.models.interface.ModelInterface --* context_is_king.rag_pipeline.query_enhancement.dual_retrieval.HypotheticalAnswerer : model_interface
+context_is_king.models.interface.ModelInterface --* context_is_king.rag_pipeline.query_enhancement.query_rewriter.QueryRewriter : model_interface
+context_is_king.plotting.core.PlotManager --* context_is_king.plotting.experiments.scaling.ScalingPlotter : pm
+context_is_king.rag_pipeline.context_assembly.engine.ContextAssembly --* context_is_king.rag_pipeline.orchestration.controller.ExperimentController : context_assembly
+context_is_king.rag_pipeline.document_processing.processor.DocumentProcessor --* context_is_king.rag_pipeline.orchestration.controller.ExperimentController : doc_processor
+context_is_king.rag_pipeline.embedding_storage.manager.EmbeddingStorageManager --* context_is_king.rag_pipeline.orchestration.controller.ExperimentController : embedding_manager
+context_is_king.rag_pipeline.generation.interface.GenerationInterface --* context_is_king.rag_pipeline.orchestration.controller.ExperimentController : generation
+context_is_king.rag_pipeline.generation.interface.OpenAIJudgeClient --* context_is_king.rag_pipeline.generation.interface.GenerationInterface : judge_client
+context_is_king.rag_pipeline.generation.interface.RateLimitedNvidiaClient --* context_is_king.rag_pipeline.generation.interface.GenerationInterface : nvidia_client
+context_is_king.rag_pipeline.query_enhancement.dual_retrieval.HypotheticalAnswerer --* context_is_king.rag_pipeline.query_enhancement.dual_retrieval.DualRetrieval : hypothetical_answerer
+context_is_king.rag_pipeline.query_enhancement.query_rewriter.QueryRewriter --* context_is_king.rag_pipeline.query_enhancement.dual_retrieval.DualRetrieval : query_rewriter
+context_is_king.rag_pipeline.reranking.module.RerankerModule --* context_is_king.rag_pipeline.orchestration.controller.ExperimentController : reranker
+context_is_king.rag_pipeline.retrieval.engine.RetrievalEngine --* context_is_king.rag_pipeline.orchestration.controller.ExperimentController : retrieval_engine
+context_is_king.rag_pipeline.types.DocumentChunk --* context_is_king.rag_pipeline.types.RetrievalResult : chunk
+context_is_king.rag_pipeline.types.ExperimentConfig --* context_is_king.rag_pipeline.types.ExperimentResults : config
+context_is_king.models.interface.ModelInterface --o context_is_king.evaluation.judge_evaluator.JudgeEvaluator : model_interface
+context_is_king.rag_pipeline.retrieval.engine.RetrievalEngine --o context_is_king.rag_pipeline.query_enhancement.dual_retrieval.DualRetrieval : retrieval_engine
+context_is_king.rag_pipeline.types.PipelineConfig --o context_is_king.rag_pipeline.context_assembly.engine.ContextAssembly : config
+context_is_king.rag_pipeline.types.PipelineConfig --o context_is_king.rag_pipeline.document_processing.processor.DocumentProcessor : config
+context_is_king.rag_pipeline.types.PipelineConfig --o context_is_king.rag_pipeline.embedding_storage.manager.EmbeddingStorageManager : config
+context_is_king.rag_pipeline.types.PipelineConfig --o context_is_king.rag_pipeline.generation.interface.GenerationInterface : config
+context_is_king.rag_pipeline.types.PipelineConfig --o context_is_king.rag_pipeline.orchestration.controller.ExperimentController : config
+context_is_king.rag_pipeline.types.PipelineConfig --o context_is_king.rag_pipeline.reranking.module.RerankerModule : config
+context_is_king.rag_pipeline.types.PipelineConfig --o context_is_king.rag_pipeline.retrieval.engine.RetrievalEngine : config
+@enduml

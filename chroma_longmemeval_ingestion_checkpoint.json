@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-09-03T22:10:28.618574",
+  "collection_name": "longmemeval_conversations",
+  "chroma_path": "chroma_longmemeval",
+  "current_batch": 5,
+  "total_batches": 85,
+  "processed_conversation_ids": [],
+  "remaining_conversation_ids": [],
+  "total_chunks_ingested": 25355,
+  "collection_count": 25355,
+  "embedding_model": "openai",
+  "embedding_dimensions": 768
+}
