@@ -209,6 +209,14 @@ __marimo__/
 /.quarto/
 docs/site_libs
 docs/img
+docs/CLAUDE.html
+docs/analyze_checkpoint_data.html
+docs/blog_post/
+docs/chroma_research_repos/
+docs/nbs/
+docs/presentation.html
+docs/src/
+.claude/projects/
 data/chroma
 **/*.parquet
 data/chroma_db/*
