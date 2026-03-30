@@ -796,7 +796,7 @@ How much worse do they answer with a lot of context?
 
 ## Claude refuses to answer when in doubt
 
-![](img/chroma_claude_results_longmemevail.png){fig-align="center"}
+![](img/chroma_claude_results_longmemeval.png){fig-align="center"}
 
 Is this good or bad? 
 
