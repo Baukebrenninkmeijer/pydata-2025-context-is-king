@@ -12,7 +12,7 @@ class WikiTextConfig:
     # Data paths
     data_dir: Path = Path("data")
     processed_dir: Path = field(default_factory=lambda: Path("data/processed"))
-    chroma_db_path: Path = field(default_factory=lambda: Path("data/chroma_db"))
+    chroma_db_path: Path = field(default_factory=lambda: Path("data/vector_stores/chroma_db"))
 
     # Dataset configuration
     local_data_file: Path = field(default_factory=lambda: Path("data/processed/nq_question_answer.parquet"))

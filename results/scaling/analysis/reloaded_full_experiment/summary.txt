@@ -1,0 +1,52 @@
+📊 EXPERIMENT RESULTS SUMMARY
+==================================================
+
+Total tests: 113
+Successful tests: 111
+Failed tests: 2
+Success rate: 98.2%
+
+🏆 Success Rate by Model:
+                       total_tests  successful_tests success_rate
+model_name                                                       
+claude-haiku-3.5                15                15       100.0%
+claude-sonnet-4                 15                13        86.7%
+gemini-2.5-flash                18                18       100.0%
+gemini-2.5-flash-lite           17                17       100.0%
+gemini-2.5-pro                  18                18       100.0%
+gpt-5-mini                      15                15       100.0%
+gpt-5-nano                      15                15       100.0%
+
+⚡ Performance Analysis (Successful Tests Only):
+Average duration: 3.27s
+Average throughput: 11912.8 tokens/sec
+
+📈 Performance by Context Size:
+             duration_seconds             tokens_per_second          
+                         mean   std count              mean       std
+context_size                                                         
+10                       0.93  0.54    21             15.31     10.77
+100                      1.04  0.60    21            137.41     94.92
+1000                     1.07  0.60    19           1340.66    985.93
+1001                     0.30   NaN     1           3357.90       NaN
+10000                    1.37  0.63    21           9552.73   6032.46
+100000                   5.16  4.70    19          34663.49  25995.36
+100001                  16.27   NaN     1           6146.94       NaN
+1000000                 19.45  4.52     7          54017.79  13228.55
+1000001                 21.37   NaN     1          46795.18       NaN
+
+🚀 Performance by Model:
+                      duration_seconds             tokens_per_second          
+                                  mean   std count              mean       std
+model_name                                                                    
+claude-haiku-3.5                  4.32  6.50    15           2440.48   2543.11
+claude-sonnet-4                   2.46  2.49    13           3581.17   5377.81
+gemini-2.5-flash                  4.65  8.19    18          16947.21  20678.76
+gemini-2.5-flash-lite             2.09  4.51    17          28171.73  35856.62
+gemini-2.5-pro                    5.56  7.25    18          12541.10  18714.64
+gpt-5-mini                        1.80  1.50    15           6409.98   9516.81
+gpt-5-nano                        1.30  1.06    15           8886.45  12967.25
+
+❌ Error Analysis (2 failures):
+  - Error code: 500 - {'code': 500, 'error': '413 {"type":"error","error":{"type":"invalid_request_error","message":"Prompt is too long"},"request_id":"req_vrtx_011CTAnwbzgVK13vsqWaQL8F"}', 'source': 'provider'}: 1 occurrences
+  - Error code: 500 - {'code': 500, 'error': '413 {"type":"error","error":{"type":"invalid_request_error","message":"Prompt is too long"},"request_id":"req_vrtx_011CTAoLPxXKWbyXhT87oqVT"}', 'source': 'provider'}: 1 occurrences

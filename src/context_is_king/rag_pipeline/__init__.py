@@ -28,7 +28,7 @@ __all__ = [
 ]
 
 
-DATA_DIR = Path(__file__).parents[2] / "data"
+DATA_DIR = Path(__file__).parents[3] / "data"
 logger.debug(f"{DATA_DIR=}")
 (DATA_DIR / "processed").mkdir(parents=True, exist_ok=True)
 (DATA_DIR / "raw").mkdir(parents=True, exist_ok=True)

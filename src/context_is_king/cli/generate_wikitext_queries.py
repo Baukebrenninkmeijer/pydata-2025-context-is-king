@@ -461,7 +461,7 @@ def create_config_from_args(args: argparse.Namespace) -> WikiTextConfig:
         # Data paths
         data_dir=args.data_dir,
         processed_dir=args.data_dir / "processed",
-        chroma_db_path=args.data_dir / "chroma_db",
+        chroma_db_path=args.data_dir / "vector_stores" / "chroma_db",
         # Dataset
         local_data_file=args.local_data_file,
         sample_size=args.sample_size,

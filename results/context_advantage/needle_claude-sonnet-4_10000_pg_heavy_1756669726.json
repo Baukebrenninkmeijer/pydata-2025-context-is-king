@@ -1,0 +1,660 @@
+{
+  "experiment_id": "a687c674",
+  "model_name": "claude-sonnet-4",
+  "context_size": 10000,
+  "composition": "pg_heavy",
+  "haystack_id": 10000,
+  "needle_set_id": "52c52cf6",
+  "retrieval_scores": [
+    0.1585634762379528,
+    0.1529137587238285,
+    0.15879207752465146,
+    0.12219457013574661,
+    0.14154440154440157,
+    0.18297023754505962,
+    0.15439278937381404,
+    0.14207012308839986
+  ],
+  "cross_reference_scores": [
+    0.24357810574408612,
+    0.1448827532488829,
+    0.211391745647644,
+    0.1288944343617665,
+    0.19310502283105022,
+    0.19993164730006835
+  ],
+  "position_analysis": {
+    "zone_performance": {
+      "beginning": {
+        "avg_score": 0.1515002223853895,
+        "success_rate": 0.0,
+        "total_questions": 3,
+        "needle_count": 1
+      },
+      "early_middle": {
+        "avg_score": 0.2839982164216916,
+        "success_rate": 0.0,
+        "total_questions": 5,
+        "needle_count": 2
+      },
+      "center": {
+        "avg_score": 0.22923216220482148,
+        "success_rate": 0.0,
+        "total_questions": 6,
+        "needle_count": 2
+      },
+      "late_middle": {
+        "avg_score": 0.3566370858222864,
+        "success_rate": 0.0,
+        "total_questions": 4,
+        "needle_count": 1
+      },
+      "end": {
+        "avg_score": 0.3293960387623257,
+        "success_rate": 0.0,
+        "total_questions": 2,
+        "needle_count": 1
+      }
+    },
+    "position_distribution": {
+      "total_needles": 7,
+      "needles_by_zone": {
+        "beginning": 1,
+        "early_middle": 2,
+        "center": 2,
+        "late_middle": 1,
+        "end": 1
+      },
+      "average_char_positions": {
+        "beginning": 3017.0,
+        "early_middle": 10760.0,
+        "center": 22116.0,
+        "late_middle": 27507.0,
+        "end": 32231.0
+      },
+      "average_token_positions": {
+        "beginning": 636.0,
+        "early_middle": 453.0,
+        "center": 641.0,
+        "late_middle": 635.0,
+        "end": 302.0
+      }
+    },
+    "question_position_mappings": 20,
+    "zones_tested": 5
+  },
+  "needle_positions": [
+    {
+      "needle_id": "needle_0000",
+      "section_index": 0,
+      "section_ratio": 0.0,
+      "position_zone": "beginning",
+      "char_start": 3017,
+      "char_end": 3071,
+      "token_start": 636,
+      "token_end": 647
+    },
+    {
+      "needle_id": "needle_0001",
+      "section_index": 2,
+      "section_ratio": 0.15384615384615385,
+      "position_zone": "early_middle",
+      "char_start": 7644,
+      "char_end": 7697,
+      "token_start": 437,
+      "token_end": 448
+    },
+    {
+      "needle_id": "needle_0002",
+      "section_index": 4,
+      "section_ratio": 0.3076923076923077,
+      "position_zone": "early_middle",
+      "char_start": 13876,
+      "char_end": 13932,
+      "token_start": 469,
+      "token_end": 481
+    },
+    {
+      "needle_id": "needle_0003",
+      "section_index": 6,
+      "section_ratio": 0.46153846153846156,
+      "position_zone": "center",
+      "char_start": 20186,
+      "char_end": 20229,
+      "token_start": 825,
+      "token_end": 841
+    },
+    {
+      "needle_id": "needle_0004",
+      "section_index": 8,
+      "section_ratio": 0.6153846153846154,
+      "position_zone": "center",
+      "char_start": 24046,
+      "char_end": 24090,
+      "token_start": 457,
+      "token_end": 470
+    },
+    {
+      "needle_id": "needle_0005",
+      "section_index": 10,
+      "section_ratio": 0.7692307692307693,
+      "position_zone": "late_middle",
+      "char_start": 27507,
+      "char_end": 27575,
+      "token_start": 635,
+      "token_end": 651
+    },
+    {
+      "needle_id": "needle_0006",
+      "section_index": 12,
+      "section_ratio": 0.9230769230769231,
+      "position_zone": "end",
+      "char_start": 32231,
+      "char_end": 32285,
+      "token_start": 302,
+      "token_end": 313
+    }
+  ],
+  "question_mappings": [
+    {
+      "question_id": "question_0000",
+      "needle_ids": [
+        "needle_0002",
+        "needle_0000"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0002",
+        "section_index": 4,
+        "section_ratio": 0.3076923076923077,
+        "position_zone": "early_middle",
+        "char_start": 13876,
+        "char_end": 13932,
+        "token_start": 469,
+        "token_end": 481
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0000",
+          "section_index": 0,
+          "section_ratio": 0.0,
+          "position_zone": "beginning",
+          "char_start": 3017,
+          "char_end": 3071,
+          "token_start": 636,
+          "token_end": 647
+        }
+      ]
+    },
+    {
+      "question_id": "question_0001",
+      "needle_ids": [
+        "needle_0005",
+        "needle_0004",
+        "needle_0006"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0005",
+        "section_index": 10,
+        "section_ratio": 0.7692307692307693,
+        "position_zone": "late_middle",
+        "char_start": 27507,
+        "char_end": 27575,
+        "token_start": 635,
+        "token_end": 651
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0004",
+          "section_index": 8,
+          "section_ratio": 0.6153846153846154,
+          "position_zone": "center",
+          "char_start": 24046,
+          "char_end": 24090,
+          "token_start": 457,
+          "token_end": 470
+        },
+        {
+          "needle_id": "needle_0006",
+          "section_index": 12,
+          "section_ratio": 0.9230769230769231,
+          "position_zone": "end",
+          "char_start": 32231,
+          "char_end": 32285,
+          "token_start": 302,
+          "token_end": 313
+        }
+      ]
+    },
+    {
+      "question_id": "question_0002",
+      "needle_ids": [
+        "needle_0002",
+        "needle_0000"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0002",
+        "section_index": 4,
+        "section_ratio": 0.3076923076923077,
+        "position_zone": "early_middle",
+        "char_start": 13876,
+        "char_end": 13932,
+        "token_start": 469,
+        "token_end": 481
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0000",
+          "section_index": 0,
+          "section_ratio": 0.0,
+          "position_zone": "beginning",
+          "char_start": 3017,
+          "char_end": 3071,
+          "token_start": 636,
+          "token_end": 647
+        }
+      ]
+    },
+    {
+      "question_id": "question_0003",
+      "needle_ids": [
+        "needle_0009",
+        "needle_0005"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0005",
+        "section_index": 10,
+        "section_ratio": 0.7692307692307693,
+        "position_zone": "late_middle",
+        "char_start": 27507,
+        "char_end": 27575,
+        "token_start": 635,
+        "token_end": 651
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0004",
+      "needle_ids": [
+        "needle_0000"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0000",
+        "section_index": 0,
+        "section_ratio": 0.0,
+        "position_zone": "beginning",
+        "char_start": 3017,
+        "char_end": 3071,
+        "token_start": 636,
+        "token_end": 647
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0005",
+      "needle_ids": [
+        "needle_0002"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0002",
+        "section_index": 4,
+        "section_ratio": 0.3076923076923077,
+        "position_zone": "early_middle",
+        "char_start": 13876,
+        "char_end": 13932,
+        "token_start": 469,
+        "token_end": 481
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0006",
+      "needle_ids": [
+        "needle_0001",
+        "needle_0003",
+        "needle_0000"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0001",
+        "section_index": 2,
+        "section_ratio": 0.15384615384615385,
+        "position_zone": "early_middle",
+        "char_start": 7644,
+        "char_end": 7697,
+        "token_start": 437,
+        "token_end": 448
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0003",
+          "section_index": 6,
+          "section_ratio": 0.46153846153846156,
+          "position_zone": "center",
+          "char_start": 20186,
+          "char_end": 20229,
+          "token_start": 825,
+          "token_end": 841
+        },
+        {
+          "needle_id": "needle_0000",
+          "section_index": 0,
+          "section_ratio": 0.0,
+          "position_zone": "beginning",
+          "char_start": 3017,
+          "char_end": 3071,
+          "token_start": 636,
+          "token_end": 647
+        }
+      ]
+    },
+    {
+      "question_id": "question_0007",
+      "needle_ids": [
+        "needle_0006",
+        "needle_0004"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0006",
+        "section_index": 12,
+        "section_ratio": 0.9230769230769231,
+        "position_zone": "end",
+        "char_start": 32231,
+        "char_end": 32285,
+        "token_start": 302,
+        "token_end": 313
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0004",
+          "section_index": 8,
+          "section_ratio": 0.6153846153846154,
+          "position_zone": "center",
+          "char_start": 24046,
+          "char_end": 24090,
+          "token_start": 457,
+          "token_end": 470
+        }
+      ]
+    },
+    {
+      "question_id": "question_0008",
+      "needle_ids": [
+        "needle_0004",
+        "needle_0001",
+        "needle_0005"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0004",
+        "section_index": 8,
+        "section_ratio": 0.6153846153846154,
+        "position_zone": "center",
+        "char_start": 24046,
+        "char_end": 24090,
+        "token_start": 457,
+        "token_end": 470
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0001",
+          "section_index": 2,
+          "section_ratio": 0.15384615384615385,
+          "position_zone": "early_middle",
+          "char_start": 7644,
+          "char_end": 7697,
+          "token_start": 437,
+          "token_end": 448
+        },
+        {
+          "needle_id": "needle_0005",
+          "section_index": 10,
+          "section_ratio": 0.7692307692307693,
+          "position_zone": "late_middle",
+          "char_start": 27507,
+          "char_end": 27575,
+          "token_start": 635,
+          "token_end": 651
+        }
+      ]
+    },
+    {
+      "question_id": "question_0009",
+      "needle_ids": [
+        "needle_0006"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0006",
+        "section_index": 12,
+        "section_ratio": 0.9230769230769231,
+        "position_zone": "end",
+        "char_start": 32231,
+        "char_end": 32285,
+        "token_start": 302,
+        "token_end": 313
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0010",
+      "needle_ids": [
+        "needle_0001"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0001",
+        "section_index": 2,
+        "section_ratio": 0.15384615384615385,
+        "position_zone": "early_middle",
+        "char_start": 7644,
+        "char_end": 7697,
+        "token_start": 437,
+        "token_end": 448
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0011",
+      "needle_ids": [
+        "needle_0004",
+        "needle_0008",
+        "needle_0009"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0004",
+        "section_index": 8,
+        "section_ratio": 0.6153846153846154,
+        "position_zone": "center",
+        "char_start": 24046,
+        "char_end": 24090,
+        "token_start": 457,
+        "token_end": 470
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0012",
+      "needle_ids": [
+        "needle_0000"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0000",
+        "section_index": 0,
+        "section_ratio": 0.0,
+        "position_zone": "beginning",
+        "char_start": 3017,
+        "char_end": 3071,
+        "token_start": 636,
+        "token_end": 647
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0013",
+      "needle_ids": [
+        "needle_0005"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0005",
+        "section_index": 10,
+        "section_ratio": 0.7692307692307693,
+        "position_zone": "late_middle",
+        "char_start": 27507,
+        "char_end": 27575,
+        "token_start": 635,
+        "token_end": 651
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0014",
+      "needle_ids": [
+        "needle_0000"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0000",
+        "section_index": 0,
+        "section_ratio": 0.0,
+        "position_zone": "beginning",
+        "char_start": 3017,
+        "char_end": 3071,
+        "token_start": 636,
+        "token_end": 647
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0015",
+      "needle_ids": [
+        "needle_0004",
+        "needle_0006"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0004",
+        "section_index": 8,
+        "section_ratio": 0.6153846153846154,
+        "position_zone": "center",
+        "char_start": 24046,
+        "char_end": 24090,
+        "token_start": 457,
+        "token_end": 470
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0006",
+          "section_index": 12,
+          "section_ratio": 0.9230769230769231,
+          "position_zone": "end",
+          "char_start": 32231,
+          "char_end": 32285,
+          "token_start": 302,
+          "token_end": 313
+        }
+      ]
+    },
+    {
+      "question_id": "question_0016",
+      "needle_ids": [
+        "needle_0004"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0004",
+        "section_index": 8,
+        "section_ratio": 0.6153846153846154,
+        "position_zone": "center",
+        "char_start": 24046,
+        "char_end": 24090,
+        "token_start": 457,
+        "token_end": 470
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0017",
+      "needle_ids": [
+        "needle_0005",
+        "needle_0009"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0005",
+        "section_index": 10,
+        "section_ratio": 0.7692307692307693,
+        "position_zone": "late_middle",
+        "char_start": 27507,
+        "char_end": 27575,
+        "token_start": 635,
+        "token_end": 651
+      },
+      "secondary_positions": []
+    },
+    {
+      "question_id": "question_0018",
+      "needle_ids": [
+        "needle_0004",
+        "needle_0003",
+        "needle_0000"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0004",
+        "section_index": 8,
+        "section_ratio": 0.6153846153846154,
+        "position_zone": "center",
+        "char_start": 24046,
+        "char_end": 24090,
+        "token_start": 457,
+        "token_end": 470
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0003",
+          "section_index": 6,
+          "section_ratio": 0.46153846153846156,
+          "position_zone": "center",
+          "char_start": 20186,
+          "char_end": 20229,
+          "token_start": 825,
+          "token_end": 841
+        },
+        {
+          "needle_id": "needle_0000",
+          "section_index": 0,
+          "section_ratio": 0.0,
+          "position_zone": "beginning",
+          "char_start": 3017,
+          "char_end": 3071,
+          "token_start": 636,
+          "token_end": 647
+        }
+      ]
+    },
+    {
+      "question_id": "question_0019",
+      "needle_ids": [
+        "needle_0003",
+        "needle_0004"
+      ],
+      "primary_position": {
+        "needle_id": "needle_0003",
+        "section_index": 6,
+        "section_ratio": 0.46153846153846156,
+        "position_zone": "center",
+        "char_start": 20186,
+        "char_end": 20229,
+        "token_start": 825,
+        "token_end": 841
+      },
+      "secondary_positions": [
+        {
+          "needle_id": "needle_0004",
+          "section_index": 8,
+          "section_ratio": 0.6153846153846154,
+          "position_zone": "center",
+          "char_start": 24046,
+          "char_end": 24090,
+          "token_start": 457,
+          "token_end": 470
+        }
+      ]
+    }
+  ],
+  "avg_response_time": 4.159271669387818,
+  "total_cost": 0.737935,
+  "success_rate": 1.0,
+  "timestamp": 1756669726.2160928
+}

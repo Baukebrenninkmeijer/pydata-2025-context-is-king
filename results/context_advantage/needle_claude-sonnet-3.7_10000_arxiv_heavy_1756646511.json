@@ -1,0 +1,34 @@
+{
+  "experiment_id": "abc1f9cb",
+  "model_name": "claude-sonnet-3.7",
+  "context_size": 10000,
+  "composition": "arxiv_heavy",
+  "haystack_id": 10000,
+  "needle_set_id": "5d418282",
+  "retrieval_scores": [
+    0.14746816252274106,
+    0.001098901098901099,
+    0.009933774834437087,
+    0.36745689655172414,
+    0.004658385093167702
+  ],
+  "cross_reference_scores": [
+    0.10750881425125255,
+    0.21022648035031938,
+    0.06536274240132031,
+    0.12487476028335487,
+    0.06890540526187214,
+    0.037144295258979984
+  ],
+  "position_analysis": {
+    "avg_score_by_position": {
+      "beginning": 0.07428353181082108,
+      "middle": 0.1886953356930806,
+      "end": 0.004658385093167702
+    }
+  },
+  "avg_response_time": 130.74177354574203,
+  "total_cost": 0.6138480000000001,
+  "success_rate": 1.0,
+  "timestamp": 1756646511.114167
+}

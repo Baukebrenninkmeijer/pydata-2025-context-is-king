@@ -34,7 +34,8 @@ class FixedQAGenerator:
 
     def __init__(self, output_dir: Path = None):
         if output_dir is None:
-            output_dir = Path(__file__).parent / "data" / "fixed_qas"
+            project_root = Path(__file__).parent.parent.parent.parent.parent
+            output_dir = project_root / "data" / "context_advantage" / "fixed_qas"
 
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)

@@ -223,8 +223,8 @@ DATASET REQUIREMENTS:
     )
     parser.add_argument(
         "--chroma-path",
-        default="chroma_longmemeval",
-        help="ChromaDB storage path for LongMemEval (default: chroma_longmemeval)",
+        default="data/vector_stores/longmemeval",
+        help="ChromaDB storage path for LongMemEval (default: data/vector_stores/longmemeval)",
     )
     parser.add_argument(
         "--embedding-dimensions",

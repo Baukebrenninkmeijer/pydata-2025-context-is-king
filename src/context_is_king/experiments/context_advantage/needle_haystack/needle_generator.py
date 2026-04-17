@@ -97,7 +97,8 @@ class NeedleGenerator:
 
         if self.use_fixed_qas:
             if fixed_qa_dir is None:
-                fixed_qa_dir = Path(__file__).parent.parent / "data" / "fixed_qas"
+                project_root = Path(__file__).parent.parent.parent.parent.parent.parent
+                fixed_qa_dir = project_root / "data" / "context_advantage" / "fixed_qas"
             self.fixed_qa_dir = Path(fixed_qa_dir)
             self.fixed_qas = self._load_fixed_qas()
             print(f"🧵 Initialized Needle Generator with fixed Q&As from {self.fixed_qa_dir}")
@@ -606,7 +607,8 @@ def main():
     question_types = args.question_types.split(",")
 
     if args.output_dir is None:
-        args.output_dir = Path(__file__).parent.parent / "data" / "needles"
+        project_root = Path(__file__).parent.parent.parent.parent.parent.parent
+        args.output_dir = project_root / "data" / "context_advantage" / "needles"
 
     # Initialize generator
     generator = NeedleGenerator()

@@ -561,7 +561,7 @@ Endless list of options
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](src/data/results/gemini_only_analysis/throughput_vs_context_size.png){fig-align="center" }
+![](results/scaling/analysis/gemini_only_analysis/throughput_vs_context_size.png){fig-align="center" }
 :::
 
 ::: {.column width="50%"}
@@ -582,9 +582,9 @@ Endless list of options
 <!-- :::: {.columns}
 ::: {.column width='50%'} -->
 ::: {#fig-model-speeds layout-ncol=2}
-![GPT Throughput for different context sizes.](src/data/results/gpt_only_analysis/throughput_vs_context_size.png){#fig-gpt}
+![GPT Throughput for different context sizes.](results/scaling/analysis/gpt_only_analysis/throughput_vs_context_size.png){#fig-gpt}
 
-![Claude Throughput for different context sizes.](src/data/results/claude_only_analysis/throughput_vs_context_size.png){#fig-claude}
+![Claude Throughput for different context sizes.](results/scaling/analysis/claude_only_analysis/throughput_vs_context_size.png){#fig-claude}
 :::
 
 ---
@@ -594,7 +594,7 @@ Endless list of options
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](src/data/results/full_experiment/throughput_vs_context_size.png){fig-align="center" }
+![](results/scaling/analysis/full_experiment/throughput_vs_context_size.png){fig-align="center" }
 :::
 
 ::: {.column width="50%"}

@@ -100,7 +100,7 @@ class ContextWindowExperiment:
 
         # Set up data directory
         if data_dir is None:
-            data_dir = Path(__file__).parent.parent.parent / "data"
+            data_dir = Path(__file__).parent.parent.parent.parent / "data"
         self.data_dir = Path(data_dir)
 
         # Set up API client
@@ -130,8 +130,8 @@ class ContextWindowExperiment:
         Returns:
             list[ExperimentResult] or tuple[list[ExperimentResult], ExperimentAnalyzer]
         """
-        # Try src/data/results first (where data actually gets saved)
-        results_dir = Path(__file__).parent.parent.parent / "data" / "results" / experiment_id
+        project_root = Path(__file__).parent.parent.parent.parent
+        results_dir = project_root / "results" / "scaling" / experiment_id
 
         if not results_dir.exists():
             # Fallback to configured data directory
@@ -1653,7 +1653,8 @@ class ExperimentAnalyzer:
         """Save experiment results to a dedicated directory with CSV, JSON, and plots."""
 
         if results_dir is None:
-            results_dir = Path(__file__).parent.parent.parent / "data" / "results"
+            project_root = Path(__file__).parent.parent.parent.parent
+            results_dir = project_root / "results" / "scaling"
         results_dir = Path(results_dir)
 
         # Create experiment-specific directory

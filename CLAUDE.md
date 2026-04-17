@@ -27,35 +27,34 @@ This is a PyData 2025 research project comparing long context window approaches 
 
 ```bash
 # Context advantage experiment (main research experiment)
-python experiments/context_advantage/context_advantage_experiment.py --help
+python src/context_is_king/experiments/context_advantage/context_advantage_experiment.py --help
 
 # Quick needle-in-haystack test
-python experiments/context_advantage/context_advantage_experiment.py --experiment-type needle --quick-test
+python src/context_is_king/experiments/context_advantage/context_advantage_experiment.py --experiment-type needle --quick-test
 
 # Resume interrupted experiment
-python experiments/context_advantage/context_advantage_experiment.py --resume-from <experiment_id>
+python src/context_is_king/experiments/context_advantage/context_advantage_experiment.py --resume-from <experiment_id>
 
 # Context window scaling experiment
-python experiments/context_window_scaling/run_experiment.py --help
+python src/context_is_king/experiments/context_window_scaling/run_experiment.py --help
 
 # Quick scaling test
-python experiments/context_window_scaling/run_experiment.py --quick-test
+python src/context_is_king/experiments/context_window_scaling/run_experiment.py --quick-test
+
+# Reranking value experiment
+python src/context_is_king/experiments/reranking_value/run_experiment.py --help
 ```
 
 ### Data Preparation
 
+Use the installed CLI entry points (see `pyproject.toml` `[project.scripts]`):
+
 ```bash
-# Download research datasets
-python download_datasets.py
-
-# Ingest data into ChromaDB
-python ingest_chroma_data.py
-
-# Process RAG pipeline data
-python ingest_data.py
-
-# Concatenate WikiQA parquet files
-python concatenate_wikiqa_parquets.py
+ck-download-datasets          # Paul Graham essays, arXiv papers, Chroma needles
+ck-ingest-chroma              # Ingest LongMemEval into ChromaDB
+ck-ingest-data                # RAG pipeline data ingestion
+ck-generate-queries-v2        # WikiText query pipeline (current version)
+ck-extract-longmemeval-ground-truth
 ```
 
 ## Code Architecture
@@ -82,7 +81,7 @@ Two main experimental tracks:
 - **Needle Generation**: `needle_haystack/needle_generator.py` - Creates synthetic test cases
 - **Haystack Building**: `needle_haystack/haystack_builder.py` - Assembles documents to target token counts  
 - **LongMemEval Analysis**: `longmemeval_analysis/context_grouper.py` - Processes real-world evaluation data
-- **Fixed Q&A Sets**: `data/fixed_qas/` - Pre-generated question-answer pairs for consistent evaluation
+- **Fixed Q&A Sets**: `data/context_advantage/fixed_qas/` - Pre-generated question-answer pairs for consistent evaluation
 
 **Test Scenario Types**:
 
@@ -180,7 +179,7 @@ Experiments use dataclass-based configuration:
 1. Import from main package: `from context_is_king.models import ModelInterface`
 2. Use shared evaluation metrics: `from context_is_king.evaluation import NeedleEvaluator`
 3. Follow checkpoint/recovery pattern for long-running experiments
-4. Use fixed Q&A sets from `experiments/context_advantage/data/fixed_qas/` for consistent evaluation
+4. Use fixed Q&A sets from `data/context_advantage/fixed_qas/` for consistent evaluation
 
 ### Extending Evaluation Metrics
 

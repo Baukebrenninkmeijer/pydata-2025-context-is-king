@@ -198,8 +198,8 @@ class RerankingValueExperiment:
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
         # Initialize components with ChromaDB configuration
-        project_root = Path(__file__).parent.parent.parent
-        chroma_path = project_root / "chroma_longmemeval"
+        project_root = Path(__file__).parent.parent.parent.parent.parent
+        chroma_path = project_root / "data" / "vector_stores" / "longmemeval"
 
         # Configure pipeline with SentenceTransformer fallback model
         # Primary retrieval uses direct ChromaDB queries with Azure/OpenAI embeddings
@@ -269,8 +269,8 @@ class RerankingValueExperiment:
     def _initialize_chroma_connection(self):
         """Initialize direct ChromaDB connection for LongMemEval collection with OpenAI embeddings."""
         try:
-            project_root = Path(__file__).parent.parent.parent
-            chroma_path = project_root / "chroma_longmemeval"
+            project_root = Path(__file__).parent.parent.parent.parent.parent
+            chroma_path = project_root / "data" / "vector_stores" / "longmemeval"
 
             # Initialize ChromaDB client
             self.chroma_client = chromadb.PersistentClient(path=str(chroma_path))
@@ -899,8 +899,9 @@ class RerankingValueExperiment:
         data_file = Path(self.config.longmemeval_path) / "longmemeval_selected.json"
 
         if not data_file.exists():
-            # Fallback to experiment data directory
-            data_file = Path(__file__).parent / "data" / "longmemeval_selected.json"
+            # Fallback to project data directory
+            project_root = Path(__file__).parent.parent.parent.parent.parent
+            data_file = project_root / "data" / "longmemeval_selected.json"
 
         if not data_file.exists():
             raise FileNotFoundError(f"LongMemEval data not found at {data_file}")

@@ -787,7 +787,7 @@ class ContextAdvantageExperiment:
     def __init__(self, data_dir: Path | None = None, api_key: str | None = None):
         """Initialize the experiment coordinator."""
         if data_dir is None:
-            data_dir = Path(__file__).parent.parent.parent / "data"
+            data_dir = Path(__file__).parent.parent.parent.parent.parent / "data"
 
         self.data_dir = Path(data_dir)
         self.experiment_id = str(uuid.uuid4())[:8]
@@ -2263,7 +2263,8 @@ def main():
         args.iterations = 3  # Reduced from 5 for efficiency
 
     if args.output_dir is None:
-        args.output_dir = Path(__file__).parent / "results"
+        project_root = Path(__file__).parent.parent.parent.parent.parent
+        args.output_dir = project_root / "results" / "context_advantage"
 
     # Create experiment config
     config = ExperimentConfig(

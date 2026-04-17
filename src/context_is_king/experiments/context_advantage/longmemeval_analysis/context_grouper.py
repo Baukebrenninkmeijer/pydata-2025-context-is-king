@@ -110,7 +110,8 @@ class LongMemEvalContextGrouper:
         """Initialize the context grouper."""
         if data_dir is None:
             # Look for LongMemEval data in the standard location
-            data_dir = Path(__file__).parent.parent.parent.parent / "data"
+            project_root = Path(__file__).parent.parent.parent.parent.parent.parent
+            data_dir = project_root / "data"
 
         self.data_dir = Path(data_dir)
         self.encoding = tiktoken.encoding_for_model("gpt-4o")
@@ -679,7 +680,8 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.output_dir is None:
-        args.output_dir = Path(__file__).parent.parent / "data" / "longmemeval_grouped"
+        project_root = Path(__file__).parent.parent.parent.parent.parent.parent
+        args.output_dir = project_root / "data" / "context_advantage" / "longmemeval_grouped"
 
     try:
         # Initialize grouper

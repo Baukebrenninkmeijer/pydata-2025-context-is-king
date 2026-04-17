@@ -1,0 +1,79 @@
+📊 EXPERIMENT RESULTS SUMMARY
+==================================================
+
+Total tests: 4
+Successful tests: 4
+Failed tests: 0
+Success rate: 100.0%
+
+🏆 Success Rate by Model:
+            total_tests  successful_tests success_rate
+model_name                                            
+gpt-5-mini            4                 4       100.0%
+
+⚡ Performance Analysis (Successful Tests Only):
+Average duration: 1.43s
+Average throughput: 38.0 tokens/sec
+
+📈 Performance by Context Size:
+             duration_seconds             tokens_per_second      
+                         mean   std count              mean   std
+context_size                                                     
+10                       1.38  0.71     2              8.38  4.32
+100                      1.48  0.11     2             67.65  4.99
+
+🚀 Performance by Model:
+           duration_seconds             tokens_per_second       
+                       mean   std count              mean    std
+model_name                                                      
+gpt-5-mini             1.43  0.42     4             38.02  34.43
+
+⚡ STREAMING PERFORMANCE ANALYSIS
+============================================================
+🚀 TIME TO FIRST TOKEN (TTFT) - Key User Experience Metric:
+   • Average TTFT: 1.397 seconds
+   • Median TTFT: 1.433 seconds
+   • TTFT range: 0.849s - 1.874s
+
+📊 TTFT Performance by Model:
+            Mean_TTFT  Median_TTFT  Std_TTFT  Min_TTFT  Max_TTFT
+model_name                                                      
+gpt-5-mini     1.3974       1.4332    0.4244    0.8495    1.8737
+
+🔗 TTFT vs Context Size Correlation:
+            ttft_context_corr  ttft_scaling_slope
+model_name                                       
+gpt-5-mini             0.0975              0.0717
+
+📈 Generation Speed Analysis:
+   • Average generation speed: 116.9 tokens/sec
+   • Generation speed range: 18.9 - 386.1 tokens/sec
+
+📊 Generation Speed by Model:
+              mean    std
+model_name               
+gpt-5-mini  116.93  179.7
+
+⏱️  Timing Breakdown (Context Processing vs Generation):
+
+gpt-5-mini:
+   • TTFT (context processing): 1.397s (97.8% of total)
+   • Generation time: 0.031s (2.2% of total)
+   • Total time: 1.429s
+
+🏆 PERFORMANCE RANKINGS:
+   🥇 Fastest TTFT: gpt-5-mini (1.397s)
+   🎯 Most consistent TTFT: gpt-5-mini (σ=0.4244s)
+   📈 Best TTFT scaling: gpt-5-mini (correlation=0.098)
+
+📝 Response Size Analysis:
+==================================================
+Total responses analyzed: 4
+Average response length: 2.0 characters
+Average response tokens: 1.0 tokens
+
+📊 Response Size by Model:
+           response_length      response_tokens     
+                      mean  std            mean  std
+model_name                                          
+gpt-5-mini             2.0  0.0             1.0  0.0

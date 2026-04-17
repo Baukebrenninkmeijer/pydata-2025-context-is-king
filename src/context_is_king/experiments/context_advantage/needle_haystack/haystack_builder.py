@@ -52,8 +52,8 @@ class HaystackBuilder:
     def __init__(self, data_dir: Path | None = None):
         """Initialize the haystack builder."""
         if data_dir is None:
-            # Assume we're in experiments/context_advantage/
-            data_dir = Path(__file__).parent.parent.parent.parent / "data"
+            project_root = Path(__file__).parent.parent.parent.parent.parent.parent
+            data_dir = project_root / "data"
 
         self.data_dir = Path(data_dir)
         self.encoding = tiktoken.encoding_for_model("gpt-4o")
@@ -295,7 +295,8 @@ class HaystackBuilder:
             compositions = ["pg_heavy", "arxiv_heavy", "mixed"]
 
         if output_dir is None:
-            output_dir = Path(__file__).parent.parent / "data" / "haystacks"
+            project_root = Path(__file__).parent.parent.parent.parent.parent.parent
+            output_dir = project_root / "data" / "context_advantage" / "haystacks"
 
         output_dir.mkdir(parents=True, exist_ok=True)
         haystacks = []

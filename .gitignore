@@ -207,43 +207,41 @@ marimo/_lsp/
 __marimo__/
 
 /.quarto/
-docs/site_libs
-docs/img
-docs/CLAUDE.html
-docs/analyze_checkpoint_data.html
-docs/blog_post/
-docs/chroma_research_repos/
-docs/nbs/
-docs/presentation.html
-docs/src/
+# Quarto render output — ignore everything inside docs/
+docs/*
+!docs/.gitkeep
 .claude/projects/
-data/chroma
+# Data artifacts (keep dirs, ignore generated contents)
 **/*.parquet
-data/chroma_db/*
-data/chroma/*
 data/**/*.csv
-data/**/*.csv
-data/**/*.parquet
 data/**/*.json
 data/**/*.jsonl
 data/**/*.txt
+data/vector_stores/
+# Whitelist: experiment inputs that must be tracked
+!data/context_advantage/fixed_qas/*.json
+!data/context_advantage/longmemeval_grouped/*.json
 **/checkpoints/*
-chroma_longmemeval/*
-chroma_research_repos/*
-results/quick_test/*
-chroma_wikitext/*
-logs/*
-.idea/*
 **/*.sqlite3
 **/*.sqlite3.bak
-# Large backup and data files
+# Large backup / generated files
 batch2_results_backup.json
 **/long_context_questions.json
-chroma_db
 presentation.qmd
-chroma_longmemeval_*
-chroma_db/*
+# Results — track plots/summaries, not raw data artifacts
+results/quick_test/*
+results/**/*.csv
+results/scaling/**/*.json
+results/scaling/**/*.txt
+# External repos
+chroma_research_repos/*
+# Logs and IDE
+logs/*
+.idea/*
+# OS / build artifacts
 **/.DS_Store
 .DS_Store
 _freeze/
 .jupyter_cache/
+*.puml
+classes_pydata_context_king.svg

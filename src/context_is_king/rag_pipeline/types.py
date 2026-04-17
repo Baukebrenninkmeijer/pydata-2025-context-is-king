@@ -137,7 +137,7 @@ class PipelineConfig(BaseModel):
     embedding_batch_size: int = 32
 
     # Storage
-    chroma_db_path: str = "./chroma_db"
+    chroma_db_path: str = "data/vector_stores/chroma_db"
 
     # Retrieval
     default_k: int = 10

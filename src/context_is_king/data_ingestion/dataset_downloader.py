@@ -156,7 +156,7 @@ def download_chroma_needles():
     # URLs for Chroma's needle data
     needle_urls = ["https://raw.githubusercontent.com/chroma-core/context-rot/master/data/pg_distractors.json"]
 
-    data_dir = Path("data/chroma_needles")
+    data_dir = Path("data/vector_stores/needles")
     data_dir.mkdir(exist_ok=True)
 
     downloaded_files = []
@@ -316,7 +316,7 @@ def main():
     console.print("\n📁 Data directories:")
     console.print("   data/paul_graham_essays/")
     console.print("   data/arxiv_papers/")
-    console.print("   data/chroma_needles/")
+    console.print("   data/vector_stores/needles/")
     console.print("   data/longmemeval/")
 
 

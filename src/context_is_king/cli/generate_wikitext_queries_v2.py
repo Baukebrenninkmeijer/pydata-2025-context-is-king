@@ -231,7 +231,7 @@ def show_pipeline_plan(args: argparse.Namespace) -> None:
     if start_stage <= 5 and 5 not in skip_stages:
         files_table.add_row("📄", f"[green]{data_dir}/filtered_documents.parquet[/green]")
     if start_stage <= 6 and 6 not in skip_stages:
-        files_table.add_row("🗃️", f"[green]ChromaDB collection in {args.data_dir}/chroma_db/[/green]")
+        files_table.add_row("🗃️", f"[green]ChromaDB collection in {args.data_dir}/vector_stores/chroma_db/[/green]")
 
     if files_table.row_count > 0:
         console.print()
@@ -263,7 +263,7 @@ def create_config(args: argparse.Namespace) -> WikiTextConfig:
         # Paths
         data_dir=args.data_dir,
         processed_dir=args.data_dir / "processed",
-        chroma_db_path=args.data_dir / "chroma_db",
+        chroma_db_path=args.data_dir / "vector_stores" / "chroma_db",
         local_data_file=args.data_file,
         # Sampling
         sample_size=args.sample_size,

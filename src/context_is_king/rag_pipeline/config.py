@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     embedding_batch_size: int = Field(default=32, description="Batch size for embedding generation")
 
     # Storage
-    chroma_db_path: str = Field(default="./chroma_db", description="Path to ChromaDB persistent storage")
+    chroma_db_path: str = Field(default="data/vector_stores/chroma_db", description="Path to ChromaDB persistent storage")
 
     # Retrieval
     default_k: int = Field(default=10, description="Default number of chunks to retrieve")

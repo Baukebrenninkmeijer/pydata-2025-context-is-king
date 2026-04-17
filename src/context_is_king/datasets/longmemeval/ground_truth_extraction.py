@@ -408,7 +408,7 @@ class GroundTruthExtractor:
     """
 
     def __init__(
-        self, chroma_path: str = "chroma_longmemeval", embedding_dimensions: int = 768, embedding_model: str = "openai"
+        self, chroma_path: str = "data/vector_stores/longmemeval", embedding_dimensions: int = 768, embedding_model: str = "openai"
     ):
         """
         Initialize extractor for LongMemEval dataset with per-conversation collections.
